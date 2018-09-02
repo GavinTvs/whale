@@ -1,0 +1,94 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+project.ext {
+    compileSdkVersion26 = 26
+    buildToolsVersion26 = "26.0.2"
+    minSdkVersion15 = 15
+    targetSdkVersion26 = 26
+    applicationId = "com.example.gavin.gavinsource"
+
+    isDebug = false
+    isLib = false
+    isSettingDebug = false
+    isNewsDebug = false
+
+    //设置App配置
+    setAppDefaultConfig = {
+        extension->
+            extension.apply plugin: 'com.android.application'
+            extension.description "app"
+            setAndroidConfig extension.android
+            setDependencies extension.dependencies
+    }
+
+    //设置Lib配置
+    setLibDefaultConfig = {
+        extension ->
+            extension.apply plugin: 'com.android.library'
+            extension.description "lib"
+            setAndroidConfig extension.android
+            extension.android {
+                //Library 如果不指定defaultPublishConfig 构建都会是release版本
+                defaultConfig {
+                    defaultPublishConfig 'debug'
+                    publishNonDefault true
+                }
+            }
+            setDependencies extension.dependencies
+    }
+
+    setDefaultConfig = {
+        extension->
+            setAndroidConfig extension.android
+            setDependencies extension.dependencies
+    }
+
+    //设置Android配置
+    setAndroidConfig ={
+        extension->
+            extension.compileSdkVersion 26
+            extension.buildToolsVersion "26.0.2"
+            extension.defaultConfig {
+                targetSdkVersion 26
+
+                testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+                javaCompileOptions {
+                    annotationProcessorOptions {
+                        arguments = [ AROUTER_MODULE_NAME : extension.project.getName() ]
+                    }
+                }
+            }
+            extension.buildTypes{
+                debug{
+                    extension.defaultConfig{minSdkVersion 16}
+                }
+                release{
+                    extension.defaultConfig{minSdkVersion 16}
+                }
+            }
+
+            extension.dataBinding{
+                enabled = true
+            }
+            extension.project.tasks.whenTaskAdded { task ->
+                if (task.name.contains("lint")//不启动lint代码扫描潜在bug可以使用
+                        ||task.name.equals("clean")
+                        ||task.name.contains("Aidl") //项目中有用到aidl则不可以舍弃这个任务
+                        ||task.name.contains("mockableAndroidJar")//用不到测试的时候就可以先关闭
+                        ||task.name.contains("UnitTest")//用不到测试的时候就可以先关闭
+                        ||task.name.contains("AndroidTest")//用不到NDK和JNI的也关闭掉
+                        || task.name.contains("Ndk")
+                        || task.name.contains("Jni")
+                ) {
+                    task.enabled = false
+                }
+            }
+    }
+
+    //设置依赖
+    setDependencies = {
+        extension->
+            extension.api fileTree(dir: 'libs', include: ['*.jar'])
+            extension.api 'com.android.support.constraint:constraint-layout:1.1.2'
+            extension.api 'com.android.support:appcompat-v7:26.1.0'
+    }
+}

@@ -1,0 +1,60 @@
+//引用基础配置 （必须放在初始化之前）
+apply from: "${rootProject.rootDir}/basic_config.gradle"
+project.ext.setLibDefaultConfig project
+
+//apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'com.jakewharton.butterknife'
+
+android {
+    resourcePrefix "core_"
+
+    defaultConfig {
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation project(':lib_center')
+
+    /**
+     * Butterknife 注解生成
+     */
+    api 'com.jakewharton:butterknife:8.5.1'
+
+    /**
+     * ARouter 路由
+     * git: https://github.com/alibaba/ARouter/tree/develop
+     */
+    api 'com.alibaba:arouter-api:1.4.0'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.1'
+
+    /**
+     * NetWork retrofit + okHttp + Gson
+     */
+    api 'com.squareup.retrofit2:retrofit:2.4.0'
+    api 'com.squareup.retrofit2:converter-gson:2.4.0'
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    api 'com.squareup.okhttp3:okhttp:3.11.0'
+    api 'com.google.code.gson:gson:2.8.5'
+
+    /**
+     * Rx
+     */
+    api "io.reactivex.rxjava2:rxjava:2.2.1"
+
+    /**
+     * Util库
+     * readme: https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/README-CN.md
+     */
+    api 'com.blankj:utilcode:1.19.3'
+
+
+
+}
