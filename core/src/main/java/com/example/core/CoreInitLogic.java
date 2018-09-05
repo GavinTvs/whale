@@ -3,7 +3,7 @@ package com.example.core;
 import android.util.Log;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.example.basic.application.BaseAppLogic;
+import com.example.core.application.BaseAppLogic;
 
 /**
  * @author : gavin
@@ -11,7 +11,7 @@ import com.example.basic.application.BaseAppLogic;
  * Module Application
  * 组件的Application
  */
-public class CoreInitLogic extends BaseAppLogic{
+public class CoreInitLogic extends BaseAppLogic {
     private static final String TAG = "CoreInitLogic";
 
     @Override

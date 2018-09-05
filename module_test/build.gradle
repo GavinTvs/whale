@@ -1,0 +1,29 @@
+apply from: "${rootProject.rootDir}/basic_config.gradle"
+project.ext.setLibDefaultConfig project
+
+android {
+    resourcePrefix "test_"
+
+
+    defaultConfig {
+
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation project(':common')
+
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+
+
+}

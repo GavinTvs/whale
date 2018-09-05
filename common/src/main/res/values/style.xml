@@ -1,0 +1,21 @@
+<resources>
+    <style name="CommonAppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@style/CommonActivityAnimation</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:screenOrientation">portrait</item>
+        <item name="android:launchMode">singleTop</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:listDivider">@drawable/common_divider</item>
+    </style>
+
+    <!--动画-->
+    <!--Activity 跳转动画-->
+    <style name="CommonActivityAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/common_anim_right_to_center</item>
+        <item name="android:activityOpenExitAnimation">@anim/common_anim_center_to_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/common_anim_left_to_center</item>
+        <item name="android:activityCloseExitAnimation">@anim/common_anim_center_to_right</item>
+    </style>
+</resources>

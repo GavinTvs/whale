@@ -19,7 +19,7 @@ android {
 }
 
 dependencies {
-    implementation project(':core')
-    implementation project(':lib_center')
+    api project(':lib_center')
+    api project(':core')
 
 }

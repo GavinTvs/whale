@@ -1,6 +1,8 @@
 apply from: "${rootProject.rootDir}/basic_config.gradle"
 project.ext.setAppDefaultConfig project
 
+
+
 android {
     defaultConfig {
         versionCode 1
@@ -21,15 +23,15 @@ android {
 }
 
 dependencies {
-    implementation project(':lib_center')
     implementation project(':common')
-    implementation project(':core')
 
-    implementation project(':module_main')
-
+//    implementation project(':module_main')
+    implementation project(':module_test')
 
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.1'
 
 
 
+    implementation 'com.android.support:design:27.1.1'
 }

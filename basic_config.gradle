@@ -15,6 +15,7 @@ project.ext {
     setAppDefaultConfig = {
         extension->
             extension.apply plugin: 'com.android.application'
+            apply plugin: 'com.jakewharton.butterknife'
             extension.description "app"
             setAndroidConfig extension.android
             setDependencies extension.dependencies
@@ -24,13 +25,17 @@ project.ext {
     setLibDefaultConfig = {
         extension ->
             extension.apply plugin: 'com.android.library'
+            extension.apply plugin: 'com.jakewharton.butterknife'
+
             extension.description "lib"
             setAndroidConfig extension.android
             extension.android {
-                //Library 如果不指定defaultPublishConfig 构建都会是release版本
                 defaultConfig {
+                    //Library 如果不指定defaultPublishConfig 构建都会是release版本
                     defaultPublishConfig 'debug'
                     publishNonDefault true
+                    //组件混淆合并
+                    consumerProguardFiles 'proguaed-rules.pro'
                 }
             }
             setDependencies extension.dependencies
@@ -47,8 +52,10 @@ project.ext {
         extension->
             extension.compileSdkVersion 26
             extension.buildToolsVersion "26.0.2"
+
             extension.defaultConfig {
                 targetSdkVersion 26
+                minSdkVersion 16
 
                 testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
                 javaCompileOptions {
