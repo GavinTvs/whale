@@ -1,22 +1,16 @@
 package com.example.module_tab_one;
 
-import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.example.basic.constant.DataKey;
-import com.example.basic.constant.FragmentPath;
+import com.example.lib_link.constant.DataKey;
+import com.example.lib_link.constant.FragmentPath;
 import com.example.common.base.BaseFragment;
 import com.example.module_main.R;
 import com.example.module_main.R2;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * TabFragment

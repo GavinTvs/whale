@@ -2,7 +2,7 @@ package com.example.module_tab_one;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.facade.template.IProvider;
-import com.example.basic.constant.ProviderPath;
+import com.example.lib_link.constant.ProviderPath;
 
 /**
  * @author : gavin

@@ -1,8 +1,7 @@
 apply from: "${rootProject.rootDir}/basic_config.gradle"
+
+
 project.ext.setAppDefaultConfig project
-
-
-
 android {
     defaultConfig {
         versionCode 1

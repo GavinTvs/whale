@@ -12,16 +12,11 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.example.basic.constant.ActivityPath;
-import com.example.basic.constant.DataKey;
-import com.example.basic.constant.FragmentPath;
-import com.example.basic.constant.ProviderPath;
+import com.example.lib_link.constant.ActivityPath;
+import com.example.lib_link.constant.DataKey;
+import com.example.lib_link.constant.FragmentPath;
 import com.example.common.base.BaseActivity;
-import com.example.common.utils.FragmentUtils;
-import com.example.module_tab_one.TabFragment;
-import com.example.module_tab_one.TabFragmentProvider;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 

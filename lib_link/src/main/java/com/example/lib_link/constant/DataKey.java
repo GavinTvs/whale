@@ -1,8 +1,9 @@
-package com.example.basic.constant;
+package com.example.lib_link.constant;
 
 /**
  * @author : gavin
  * @date 2018/9/5.
+ * Intent/Bundle 的Key配置
  */
 
 public class DataKey {

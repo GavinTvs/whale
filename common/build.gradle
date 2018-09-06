@@ -1,6 +1,7 @@
 apply from: "${rootProject.rootDir}/basic_config.gradle"
-project.ext.setLibDefaultConfig project
 
+
+project.ext.setLibDefaultConfig project
 android {
     resourcePrefix "common_"
 
@@ -19,7 +20,7 @@ android {
 }
 
 dependencies {
-    api project(':lib_center')
+    api project(':lib_link')
     api project(':core')
 
 }

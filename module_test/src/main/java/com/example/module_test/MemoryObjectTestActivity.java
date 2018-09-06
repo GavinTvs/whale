@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.example.basic.constant.ActivityPath;
+import com.example.lib_link.constant.ActivityPath;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

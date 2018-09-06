@@ -1,6 +1,7 @@
 apply from: "${rootProject.rootDir}/basic_config.gradle"
-project.ext.setLibDefaultConfig project
 
+
+project.ext.setLibDefaultConfig project
 android {
     resourcePrefix "test_"
 

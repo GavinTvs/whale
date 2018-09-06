@@ -1,9 +1,9 @@
-package com.example.basic.constant;
+package com.example.lib_link.constant;
 
 /**
  * @author : gavin
  * @date 2018/8/30.
- * ARouter 路径配置
+ * ARouter 获取Activity的Path配置
  */
 public class ActivityPath {
 
