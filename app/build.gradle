@@ -25,7 +25,7 @@ android {
 dependencies {
     implementation project(':common')
 
-//    implementation project(':module_main')
+    implementation project(':module_tab_one')
     implementation project(':module_test')
 
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'

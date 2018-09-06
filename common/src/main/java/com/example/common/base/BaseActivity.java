@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -50,6 +51,7 @@ public abstract class BaseActivity extends RxAppCompatActivity{
      */
     protected abstract void onViewInjected();
 
+    @LayoutRes
     protected abstract int initContentViewId();
 
 
