@@ -9,6 +9,7 @@ import com.example.lib_link.constant.FragmentPath;
 import com.example.common.base.BaseFragment;
 import com.example.module_main.R;
 import com.example.module_main.R2;
+import com.orhanobut.logger.Logger;
 
 import butterknife.BindView;
 
@@ -33,6 +34,7 @@ public class TabFragment extends BaseFragment{
 
         if(!TextUtils.isEmpty(mParam1) && !TextUtils.isEmpty(mParam2)){
             tvText.setText("mParam1:"+mParam1+" mParam2:"+mParam2);
+            Logger.d("mParam1:"+mParam1+" mParam2:"+mParam2);
         }else{
             tvText.setText("No Params");
         }
