@@ -4,11 +4,9 @@ import android.text.TextUtils;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.example.common.base.BaseFragment;
 import com.example.lib_link.constant.DataKey;
 import com.example.lib_link.constant.FragmentPath;
-import com.example.common.base.BaseFragment;
-import com.example.module_main.R;
-import com.example.module_main.R2;
 import com.orhanobut.logger.Logger;
 
 import butterknife.BindView;

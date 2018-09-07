@@ -1,6 +1,4 @@
 apply from: "${rootProject.rootDir}/basic_config.gradle"
-
-
 project.ext.setAppDefaultConfig project
 android {
     defaultConfig {
@@ -10,7 +8,7 @@ android {
     }
 
     buildTypes {
-        debug{
+        debug {
 
         }
 
@@ -23,9 +21,9 @@ android {
 
 dependencies {
     implementation project(':common')
-
-    implementation project(':module_tab_one')
-    implementation project(':module_test')
+    if(!project.ext.isTabOneRun){
+        implementation project(':module_tab_one')
+    }
 
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.1'
