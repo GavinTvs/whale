@@ -122,7 +122,5 @@ project.ext {
     setDependencies = {
         extension ->
             extension.api fileTree(dir: 'libs', include: ['*.jar'])
-            extension.api 'com.android.support.constraint:constraint-layout:1.1.2'
-            extension.api 'com.android.support:appcompat-v7:26.1.0'
     }
 }

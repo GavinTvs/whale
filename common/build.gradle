@@ -23,4 +23,7 @@ dependencies {
     api project(':lib_link')
     api project(':core')
 
+    api 'com.android.support.constraint:constraint-layout:1.1.2'
+    api 'com.android.support:appcompat-v7:26.1.0'
+
 }
