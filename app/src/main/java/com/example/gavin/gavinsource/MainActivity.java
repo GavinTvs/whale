@@ -80,28 +80,18 @@ public class MainActivity extends BaseActivity {
     @OnClick({R.id.rv_tab_one, R.id.rv_tab_center, R.id.rv_tab_three})
     public void onViewClicked(View view) {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-        switch (view.getId()) {
-            case R.id.rv_tab_one:
-                transaction.replace(R.id.fl_main, mainTabFragments.get(0));
-                transaction.addToBackStack(null);
-                transaction.commit();
-                break;
-            case R.id.rv_tab_center:
-                transaction.replace(R.id.fl_main, mainTabFragments.get(1));
-                transaction.addToBackStack(null);
-                transaction.commit();
-
-                break;
-            case R.id.rv_tab_three:
-                transaction.replace(R.id.fl_main, mainTabFragments.get(2));
-                transaction.addToBackStack(null);
-                transaction.commit();
-
-                break;
-            default:
-
-                break;
+        if(view.getId() == R.id.rv_tab_one){
+            transaction.replace(R.id.fl_main, mainTabFragments.get(0));
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }else if(view.getId() == R.id.rv_tab_center){
+            transaction.replace(R.id.fl_main, mainTabFragments.get(1));
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }else if(view.getId() == R.id.rv_tab_three){
+            transaction.replace(R.id.fl_main, mainTabFragments.get(2));
+            transaction.addToBackStack(null);
+            transaction.commit();
         }
     }
 

@@ -21,10 +21,15 @@ android {
 
 dependencies {
     implementation project(':common')
-    if(!project.ext.isTabOneRun){
+    if (!project.ext.isTabOneRun) {
         implementation project(':module_tab_one')
     }
 
+    if (!project.ext.isTabMainRun) {
+        implementation project(':module_tab_main')
+    }
+
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.1'
 

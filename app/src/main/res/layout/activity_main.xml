@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:text="Tab_One" />
+                android:text="首页" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:text="Tab_Center" />
+                android:text="附近" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -112,7 +112,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:text="Tab_Three" />
+                android:text="我的" />
         </RelativeLayout>
 
     </LinearLayout>
