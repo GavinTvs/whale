@@ -4,11 +4,11 @@ project.ext {
     buildToolsVersion26 = "26.0.2"
     minSdkVersion15 = 15
     targetSdkVersion26 = 26
-    applicationId = "com.example.gavin.gavinsource"
+    mApplicationId = "com.example.gavin.gavinsource"
 
     isDebug = false;
     isLib = false;
-    isTabOneRun = true;
+    isTabOneRun = false;
     isTestDebug = false;
 
     //设置App配置
@@ -19,6 +19,7 @@ project.ext {
             extension.description "app"
             setAndroidConfig extension.android
             setDependencies extension.dependencies
+            //放到了各自module下，放在这里有问题
 //            extension.android{
 //                sourceSets {
 //                    if ("app".equals(extension.getName())) {
@@ -44,7 +45,12 @@ project.ext {
 //                }
 //            }
             extension.android.defaultConfig {
-                applicationId applicationId + "." + extension.getName()
+                if(!"app".equals(extension.getName())){
+                    applicationId mApplicationId + "." + extension.getName()
+                }else{
+                    applicationId mApplicationId
+
+                }
             }
     }
 
@@ -83,7 +89,6 @@ project.ext {
             extension.defaultConfig {
                 targetSdkVersion 26
                 minSdkVersion 16
-
                 testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
                 javaCompileOptions {
                     annotationProcessorOptions {
