@@ -10,5 +10,7 @@ public class FragmentPath {
     /**
      * TAB_ONE
      */
-    public static final String TAB_ONE = "/tab/one";
+    public static final String TEXT_ONE = "/text/one";
+
+    public static final String MODULE_TAB_MAIN = "/module_tab_main/main_tab";
 }

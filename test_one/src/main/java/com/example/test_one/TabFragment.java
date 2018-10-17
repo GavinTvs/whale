@@ -1,4 +1,4 @@
-package com.example.module_tab_one;
+package com.example.test_one;
 
 import android.text.TextUtils;
 import android.widget.TextView;
@@ -14,7 +14,7 @@ import butterknife.BindView;
 /**
  * TabFragment
  */
-@Route(path = FragmentPath.TAB_ONE)
+@Route(path = FragmentPath.TEXT_ONE)
 public class TabFragment extends BaseFragment{
 
     @BindView(R2.id.tv_text)

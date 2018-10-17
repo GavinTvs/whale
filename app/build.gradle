@@ -22,7 +22,7 @@ android {
 dependencies {
     implementation project(':common')
     if (!project.ext.isTabOneRun) {
-        implementation project(':module_tab_one')
+        implementation project(':test_one')
     }
 
     if (!project.ext.isTabMainRun) {

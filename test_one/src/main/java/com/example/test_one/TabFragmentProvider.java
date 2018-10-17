@@ -1,4 +1,4 @@
-package com.example.module_tab_one;
+package com.example.test_one;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.facade.template.IProvider;

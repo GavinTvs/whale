@@ -12,9 +12,10 @@ import com.orhanobut.logger.Logger;
 import butterknife.BindView;
 
 /**
- * TabFragment
+ * TabMainFragment
+ * @author gavin
  */
-@Route(path = FragmentPath.TAB_ONE)
+@Route(path = FragmentPath.MODULE_TAB_MAIN)
 public class TabMainFragment extends BaseFragment{
 
     @BindView(R2.id.tv_text)

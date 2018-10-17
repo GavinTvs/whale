@@ -1,1 +1,1 @@
-include ':app', ':core', ':lib_link',':common', ':module_tab_one', ':module_tab_main'
+include ':app', ':core', ':lib_link',':common', ':test_one', ':module_tab_main'

@@ -59,16 +59,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onViewInjected() {
 
-        for (int i = 0; i < 3; i++) {
-            Bundle bundle = new Bundle();
-            bundle.putString(DataKey.KEY_TEST_ONE,"第"+i+"页");
-            bundle.putString(DataKey.KEY_TEST_TWO,"第"+i+"页");
-            Fragment tab = (Fragment) ARouter.getInstance()
-                    .build(FragmentPath.TAB_ONE)
-                    .navigation();
-            tab.setArguments(bundle);
-            mainTabFragments.add(tab);
-        }
+        initFragmentList();
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.fl_main, mainTabFragments.get(0));
@@ -77,18 +68,38 @@ public class MainActivity extends BaseActivity {
 
     }
 
+    /**
+     * 初始化首页可加载的Fragment列表
+     */
+    private void initFragmentList() {
+        for (int i = 0; i < 3; i++) {
+            Bundle bundle = new Bundle();
+            bundle.putString(DataKey.KEY_TEST_ONE, "第" + i + "页");
+            bundle.putString(DataKey.KEY_TEST_TWO, "第" + i + "页");
+
+            String fragmentPath = i == 0 ? FragmentPath.MODULE_TAB_MAIN : FragmentPath.TEXT_ONE;
+            Fragment tab = (Fragment) ARouter.getInstance()
+                    .build(fragmentPath)
+                    .navigation();
+            if (tab != null) {
+                tab.setArguments(bundle);
+                mainTabFragments.add(tab);
+            }
+        }
+    }
+
     @OnClick({R.id.rv_tab_one, R.id.rv_tab_center, R.id.rv_tab_three})
     public void onViewClicked(View view) {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        if(view.getId() == R.id.rv_tab_one){
+        if (view.getId() == R.id.rv_tab_one) {
             transaction.replace(R.id.fl_main, mainTabFragments.get(0));
             transaction.addToBackStack(null);
             transaction.commit();
-        }else if(view.getId() == R.id.rv_tab_center){
+        } else if (view.getId() == R.id.rv_tab_center) {
             transaction.replace(R.id.fl_main, mainTabFragments.get(1));
             transaction.addToBackStack(null);
             transaction.commit();
-        }else if(view.getId() == R.id.rv_tab_three){
+        } else if (view.getId() == R.id.rv_tab_three) {
             transaction.replace(R.id.fl_main, mainTabFragments.get(2));
             transaction.addToBackStack(null);
             transaction.commit();
