@@ -43,20 +43,4 @@ public class TabFragment extends BaseFragment{
         return R.layout.fragment_tab_one;
     }
 
-
-
-//    @Override
-//    public TabFragment newInstance(String params1, String params2) {
-//        TabFragment fragment = new TabFragment();
-//        Bundle bundle = new Bundle();
-//        bundle.putString(DataKey.KEY_TEST_ONE,params1);
-//        bundle.putString(DataKey.KEY_TEST_TWO,params2);
-//        fragment.setArguments(bundle);
-//        return fragment;
-//    }
-
-//    @Override
-//    public void init(Context context) {
-//
-//    }
 }
