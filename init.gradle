@@ -2,12 +2,12 @@
  * init.gradle gradle初始化加载
  * 加快Gradle DownLoad第三方库的速度
  */
-allprojects{
+allprojects {
     repositories {
         def ALIYUN_REPOSITORY_URL = 'http://maven.aliyun.com/nexus/content/groups/public'
         def ALIYUN_JCENTER_URL = 'http://maven.aliyun.com/nexus/content/repositories/jcenter'
         all { ArtifactRepository repo ->
-            if(repo instanceof MavenArtifactRepository){
+            if (repo instanceof MavenArtifactRepository) {
                 def url = repo.url.toString()
                 if (url.startsWith('https://repo1.maven.org/maven2')) {
                     project.logger.lifecycle "Repository ${repo.url} replaced by $ALIYUN_REPOSITORY_URL."
@@ -21,6 +21,8 @@ allprojects{
         }
         maven {
             url ALIYUN_REPOSITORY_URL
+        }
+        maven {
             url ALIYUN_JCENTER_URL
         }
     }

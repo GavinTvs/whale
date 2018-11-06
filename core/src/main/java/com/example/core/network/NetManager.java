@@ -125,8 +125,7 @@ public class NetManager {
             public Response intercept(Chain chain) throws IOException {
                 Request request = chain.request();
                 if (request.url() != null) {
-                    Log.e(TAG, "请求的url" + request.url().toString()
-                    );
+                    Log.e(TAG, "请求的url" + request.url().toString());
                 } else {
                     Log.e(TAG, "请求的url为空");
                 }
