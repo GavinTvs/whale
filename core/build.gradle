@@ -51,12 +51,6 @@ dependencies {
     api 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.1'
 
     /**
-     * RecyclerView Adapter 框架
-     * https://www.jianshu.com/p/b343fcff51b0
-     */
-    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34'
-
-    /**
      * Util库
      * readme: https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/README-CN.md
      */

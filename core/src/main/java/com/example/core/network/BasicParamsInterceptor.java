@@ -22,18 +22,17 @@ import okhttp3.Response;
  * @date 2018/8/29.
  */
 
-public class CommonParamsInterceptor implements Interceptor {
+public class BasicParamsInterceptor implements Interceptor {
 
     public static final String USER_AGENT = "User-Agent";
 
+    private HashMap<String, String> mCommomParamsMap;
 
-    private HashMap<String, Object> mCommomParamsMap;
-
-    public CommonParamsInterceptor() {
+    public BasicParamsInterceptor() {
         mCommomParamsMap = getDefaultParams();
     }
 
-    public CommonParamsInterceptor(HashMap<String, Object> commomParamsMap) {
+    public BasicParamsInterceptor(HashMap<String, String> commomParamsMap) {
         this.mCommomParamsMap = commomParamsMap;
     }
 
@@ -49,10 +48,9 @@ public class CommonParamsInterceptor implements Interceptor {
                 .host(oldRequest.url().host());
 
         Iterator<String> iterator = mCommomParamsMap.keySet().iterator();
-
         while(iterator.hasNext()){
             String key = iterator.next();
-            authorizedUrlBuilder.addQueryParameter(key, (String) mCommomParamsMap.get(key));
+            authorizedUrlBuilder.addQueryParameter(key, mCommomParamsMap.get(key));
         }
 
         // 新的请求
@@ -71,27 +69,27 @@ public class CommonParamsInterceptor implements Interceptor {
      *
      * @return
      */
-    private HashMap<String, Object> getDefaultParams() {
-        HashMap<String, Object> commomParamsMap = new HashMap<>();
-        commomParamsMap.put("sdk_version_code", DeviceUtils.getSDKVersionCode());
+    private HashMap<String, String> getDefaultParams() {
+        HashMap<String, String> commomParamsMap = new HashMap<>();
+        commomParamsMap.put("sdk_version_code", String.valueOf(DeviceUtils.getSDKVersionCode()));
         commomParamsMap.put("android_id", DeviceUtils.getAndroidID());
         commomParamsMap.put("mac_address", DeviceUtils.getMacAddress());
         commomParamsMap.put("device_manufacturer", DeviceUtils.getManufacturer());
         commomParamsMap.put("device_model", DeviceUtils.getModel());
-        commomParamsMap.put("device_abis", DeviceUtils.getABIs());
+        commomParamsMap.put("device_abis", DeviceUtils.getABIs().toString());
 
-        commomParamsMap.put("app_version_code", AppUtils.getAppVersionCode());
-        commomParamsMap.put("network_is_connected", NetworkUtils.isConnected());
+        commomParamsMap.put("app_version_code", String.valueOf(AppUtils.getAppVersionCode()));
+        commomParamsMap.put("network_is_connected",String.valueOf(NetworkUtils.isConnected()));
         commomParamsMap.put("network_operator_name", NetworkUtils.getNetworkOperatorName());
-        commomParamsMap.put("network_type", NetworkUtils.getNetworkType());
+        commomParamsMap.put("network_type", NetworkUtils.getNetworkType().toString());
         commomParamsMap.put("network_ip_address", NetworkUtils.getIPAddress(true));
         commomParamsMap.put("network_address_by_wifi", NetworkUtils.getIpAddressByWifi());
 
-        commomParamsMap.put("is_phone", PhoneUtils.isPhone());
+        commomParamsMap.put("is_phone", String.valueOf(PhoneUtils.isPhone()));
         commomParamsMap.put("phone_sim_operator_name", PhoneUtils.getSimOperatorName());
         commomParamsMap.put("phone_sim_operator_by_mnc", PhoneUtils.getSimOperatorByMnc());
 
-        commomParamsMap.put("now_mills", TimeUtils.getNowMills());
+        commomParamsMap.put("now_mills", String.valueOf(TimeUtils.getNowMills()));
 
         return commomParamsMap;
     }

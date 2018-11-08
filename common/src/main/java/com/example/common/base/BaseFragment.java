@@ -1,15 +1,13 @@
 package com.example.common.base;
 
-import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.example.common.R;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -19,23 +17,33 @@ import butterknife.Unbinder;
  * @date 2018/9/5.
  */
 public abstract class BaseFragment extends Fragment {
-    protected Activity mContext;
+    protected Context mContext;
     protected Unbinder unbinder;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mContext = getActivity();
     }
 
     @Nullable
     @Override
     public final View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(initFragmentViewId(), container, false);
+
+        if (getArguments() != null) {
+            initFragmentArguments();
+        }
         onViewUnInject();
         unbinder = ButterKnife.bind(this,view);
         onViewInjected();
         return view;
+    }
+
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mContext = context;
     }
 
     @LayoutRes
@@ -45,6 +53,13 @@ public abstract class BaseFragment extends Fragment {
      * View 未注入完成
      */
     protected void onViewUnInject() {
+
+    }
+
+    /**
+     * 初始化Fragment的
+     */
+    protected void initFragmentArguments(){
 
     }
     /**

@@ -1,5 +1,8 @@
 package com.example.core.network;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.blankj.utilcode.util.NetworkUtils;
@@ -36,12 +39,14 @@ public class NetManager {
     private int netWorkCacheTime = 60;
     private static final int TIME_OUT = 10;
 
-    private static String mBaseHostUrl;
+    private String mBaseHostUrl;
 
     private Retrofit mRetrofit;
 
-    private static void initNetConfig(String hostUrl){
+    public void initNetConfig(String hostUrl){
         mBaseHostUrl = hostUrl;
+        OkHttpClient okHttpClient = buildHttpClient();
+        initRetrofit(okHttpClient,mBaseHostUrl);
     }
 
     public static NetManager getInstance() {
@@ -55,19 +60,14 @@ public class NetManager {
         return instance;
     }
 
-    private NetManager() {
-        OkHttpClient okHttpClient = buildHttpClient();
-        initRetrofit(okHttpClient,mBaseHostUrl);
-
-    }
-
     /**
      * 构建HttpClient
      * @return
      */
     private OkHttpClient buildHttpClient(){
         OkHttpClient.Builder builder =  new OkHttpClient.Builder()
-                .addInterceptor(new CommonParamsInterceptor())
+                .addInterceptor(new BasicParamsInterceptor())
+//                .addInterceptor(new MutiBaseUrlInterceptor())
                 .connectionPool(new ConnectionPool(20,10,TimeUnit.SECONDS))
                 .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .readTimeout(TIME_OUT, TimeUnit.SECONDS)
@@ -81,75 +81,17 @@ public class NetManager {
      * @param okHttpClient
      * @param baseUrl
      */
-    private void initRetrofit(OkHttpClient okHttpClient,String baseUrl){
-        mRetrofit = new Retrofit.Builder()
+    private void initRetrofit(OkHttpClient okHttpClient, @NonNull String baseUrl){
+        Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
-                .client(okHttpClient)
-                .build();
+                .client(okHttpClient);
+        mRetrofit = builder.build();
     }
 
     public <T> T getApi(Class<T> api){
         return mRetrofit.create(api);
     }
 
-
-    /**
-     * 创建缓存拦截器
-     * @return
-     */
-    private Interceptor createCacheInterceptor(){
-        return new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                Response response = chain.proceed(chain.request());
-                if (NetworkUtils.isConnected()) {
-                    return response.newBuilder().removeHeader("program").removeHeader(CACHE_CONTROL)
-                            .addHeader(CACHE_CONTROL, "public, max-age=" + netWorkCacheTime).build();
-                } else {
-                    return response.newBuilder().removeHeader("program").removeHeader(CACHE_CONTROL)
-                            .addHeader(CACHE_CONTROL, "public, only-if-cached, max-stale=" + outOfNetCacheTime).build();
-                }
-            }
-        };
-    }
-
-    /**
-     * 创建日志拦截器
-     * @return
-     */
-    private Interceptor createLoggerInterceptor(){
-        return new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                Request request = chain.request();
-                if (request.url() != null) {
-                    Log.e(TAG, "请求的url" + request.url().toString());
-                } else {
-                    Log.e(TAG, "请求的url为空");
-                }
-                RequestBody requestBody = request.body();
-                Buffer buffer = new Buffer();
-                if (requestBody != null) {
-                    requestBody.writeTo(buffer);
-                    Log.e(TAG, parseContent(requestBody, buffer));
-                } else {
-                    Log.e(TAG, "request_body is null");
-                }
-                return chain.proceed(request);
-            }
-        };
-    }
-
-    private String parseContent(RequestBody requestBody, Buffer buffer) {
-        try {
-            if (requestBody.contentType() != null && requestBody.contentType().toString().equals("multipart")) {
-                return URLDecoder.decode(buffer.readUtf8(), "UTF-8");
-            }
-        } catch (UnsupportedEncodingException e) {
-
-        }
-        return "";
-    }
 }

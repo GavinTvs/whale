@@ -51,8 +51,8 @@ public abstract class BaseActivity extends RxAppCompatActivity{
      */
     protected abstract void onViewInjected();
 
-    @LayoutRes
-    protected abstract int initContentViewId();
+
+    protected abstract @LayoutRes int initContentViewId();
 
 
     @Override

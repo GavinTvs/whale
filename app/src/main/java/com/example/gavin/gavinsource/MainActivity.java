@@ -1,8 +1,8 @@
 package com.example.gavin.gavinsource;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -61,7 +61,7 @@ public class MainActivity extends BaseActivity {
 
         initFragmentList();
 
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fl_main, mainTabFragments.get(0));
         transaction.addToBackStack(null);
         transaction.commit();
@@ -90,7 +90,7 @@ public class MainActivity extends BaseActivity {
 
     @OnClick({R.id.rv_tab_one, R.id.rv_tab_center, R.id.rv_tab_three})
     public void onViewClicked(View view) {
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if (view.getId() == R.id.rv_tab_one) {
             transaction.replace(R.id.fl_main, mainTabFragments.get(0));
             transaction.addToBackStack(null);

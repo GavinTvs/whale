@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.core.CoreInitLogic;
 import com.example.core.application.BaseApplication;
+import com.example.module_tab_main.MainTabInitLogic;
 
 /**
  * @author : gavin
@@ -22,5 +23,6 @@ public class AppApplication extends BaseApplication {
     @Override
     protected void initLogic() {
         registerApplicationLogic(CoreInitLogic.class);
+        registerApplicationLogic(MainTabInitLogic.class);
     }
 }
