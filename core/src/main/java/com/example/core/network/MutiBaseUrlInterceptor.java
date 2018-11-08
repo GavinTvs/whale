@@ -21,51 +21,36 @@ import okhttp3.Response;
  * @author : gavin
  * @date 2018/11/7.
  * 支持多个BaseUrl的拦截器
+ * 使用方式：
+ * 在请求头（HEAD）中加入一个标识：AssignHost，并在后边指定baseUrl的地址即可
+ * eg:
+ * @Headers({"AssignHost:http://v.juhe.cn/"})
+ * @GET("/toutiao/index")
+ * Observable<MainItemEntity> getNews(...);
  */
 
 public class MutiBaseUrlInterceptor implements Interceptor {
 
     @Override
     public Response intercept(final Chain chain) throws IOException {
+        Request oriRequest = chain.request();
+        String headHostKey = oriRequest.header("AssignHost");
+        if (TextUtils.isEmpty(headHostKey)) {
+            return chain.proceed(oriRequest);
+        } else {
+            Request.Builder newRequestBuild = oriRequest.newBuilder();
+            newRequestBuild.removeHeader("AssignHost");
 
-        Observable.create(new ObservableOnSubscribe<Request>() {
-            @Override
-            public void subscribe(ObservableEmitter<Request> emitter) throws Exception {
-                Request oriRequest = chain.request();
+            HttpUrl parseUrl = HttpUrl.parse(headHostKey);
+            HttpUrl newBaseUrl = oriRequest.url().newBuilder()
+                    .scheme(parseUrl.scheme())
+                    .host(parseUrl.host())
+                    .port(parseUrl.port())
+                    .build();
 
-                String headHostKey = oriRequest.header("AssignHost");
-                if(TextUtils.isEmpty(headHostKey)){
-                    emitter.onNext(oriRequest);
-                }else{
-                    Request.Builder newRequestBuild = oriRequest.newBuilder();
-                    newRequestBuild.removeHeader("AssignHost");
-
-                    HttpUrl parseUrl = HttpUrl.parse(headHostKey);
-                    HttpUrl newBaseUrl = oriRequest.url().newBuilder()
-                            .scheme(parseUrl.scheme())
-                            .host(parseUrl.host())
-                            .port(parseUrl.port())
-                            .build();
-
-                    Request newRequest = newRequestBuild.url(newBaseUrl).build();
-                    emitter.onNext(newRequest);
-                }
-            }
-        }).subscribeOn(Schedulers.newThread())
-                .observeOn(Schedulers.newThread())
-                .subscribe(new Consumer<Request>() {
-                    @Override
-                    public void accept(Request request) throws Exception {
-                        chain.proceed(request);
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        Logger.e(throwable,"MutiBaseUrlInterceptor");
-                    }
-                });
-
-        return null;
+            Request newRequest = newRequestBuild.url(newBaseUrl).build();
+            return chain.proceed(newRequest);
+        }
     }
 
 }

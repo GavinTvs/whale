@@ -67,7 +67,7 @@ public class NetManager {
     private OkHttpClient buildHttpClient(){
         OkHttpClient.Builder builder =  new OkHttpClient.Builder()
                 .addInterceptor(new BasicParamsInterceptor())
-//                .addInterceptor(new MutiBaseUrlInterceptor())
+                .addInterceptor(new MutiBaseUrlInterceptor())
                 .connectionPool(new ConnectionPool(20,10,TimeUnit.SECONDS))
                 .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .readTimeout(TIME_OUT, TimeUnit.SECONDS)
