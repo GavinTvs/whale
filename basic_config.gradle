@@ -17,6 +17,7 @@ project.ext {
             extension.description "app"
             setAndroidConfig extension.android
             setDependencies extension.dependencies
+
             extension.android.defaultConfig {
                 if (!"app".equals(extension.getName())) {
                     applicationId mApplicationId + "." + extension.getName()

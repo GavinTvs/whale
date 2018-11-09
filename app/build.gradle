@@ -1,5 +1,18 @@
 apply from: "${rootProject.rootDir}/basic_config.gradle"
 project.ext.setAppDefaultConfig project
+
+/**
+ * 获取第三方账号配置
+ */
+static def getApiAccountProperties() {
+    File propFile = new File('apiAccount.properties')
+    Properties props = new Properties()
+    if (propFile.canRead()) {
+        props.load(new FileInputStream(propFile))
+    }
+    return props
+}
+
 android {
     defaultConfig {
         versionCode 1

@@ -38,9 +38,9 @@
 
     <ImageView
         android:id="@+id/iv_item_main_pic"
-        android:layout_width="90dp"
+        android:layout_width="100dp"
         android:layout_height="0dp"
-        android:background="@color/common_colorPrimary"
+        android:background="@color/common_transparent"
         app:layout_constraintBottom_toBottomOf="@+id/tv_item_main_author"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_item_main_title"
