@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:clipChildren="false"
-    android:clipToPadding="false"
-    tools:context="com.example.gavin.gavinsource.MainActivity">
+    android:clipToPadding="false">
 
     <FrameLayout
         android:id="@+id/fl_main"

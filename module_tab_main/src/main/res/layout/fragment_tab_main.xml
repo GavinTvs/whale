@@ -10,7 +10,6 @@
         android:layout_height="100dp"
         android:background="@color/common_colorPrimary"
         android:orientation="vertical">
-        fragment_tab_main
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"

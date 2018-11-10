@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.module_tab_main.MainItemFragment">
+    tools:context="com.gavin.module_tab_main.MainItemFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/main_item_recycler"

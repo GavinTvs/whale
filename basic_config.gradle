@@ -1,6 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 project.ext {
-    mApplicationId = "com.example.gavin.gavinsource"
+    mApplicationId = "com.gavin.whale"
 
     isDebug = false
     isLib = false
