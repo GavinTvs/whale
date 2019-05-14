@@ -2,21 +2,38 @@
 project.ext {
     mApplicationId = "com.gavin.whale"
 
-    isDebug = false
-    isLib = false
+    appName = "52Hz鲸"
 
     isTabOneRun = false
     isTabMainRun = false
     isTestDebug = false
 
+    compileSdkVer = 28
+    buildToolsVer = "28.0.3"
+    targetSdkVer = 26
+    minSdkVer = 16
+
+    /**
+     * 通用设置
+     */
+    setDefaultConfig = {
+        extension ->
+            //通用脚本引入
+            extension.apply plugin: 'com.jakewharton.butterknife'
+            extension.apply plugin: 'kotlin-android'
+            extension.apply plugin: 'kotlin-android-extensions'
+            extension.apply plugin: 'kotlin-kapt'
+
+            setAndroidConfig extension.android
+            setDependencies extension.dependencies
+    }
+
     //设置App配置
     setAppDefaultConfig = {
         extension ->
             extension.apply plugin: 'com.android.application'
-            apply plugin: 'com.jakewharton.butterknife'
             extension.description "app"
-            setAndroidConfig extension.android
-            setDependencies extension.dependencies
+            setDefaultConfig extension
 
             extension.android.defaultConfig {
                 if (!"app".equals(extension.getName())) {
@@ -26,50 +43,69 @@ project.ext {
 
                 }
             }
+            /**
+             * 模块化编译时根据模块名动态更改属性值
+             * 更改applicationId和app_name
+             */
+            extension.android.buildTypes {
+                if (!"app".equals(extension.getName())) {
+                    appName = extension.getName()
+                }
+                debug {
+                    //applicationIdSuffix ".debug"
+                    resValue("string", "app_name", appName + "_DEBUG")
+                }
+                release {
+                    resValue("string", "app_name", appName)
+                }
+            }
     }
 
     //设置Lib配置
     setLibDefaultConfig = {
         extension ->
             extension.apply plugin: 'com.android.library'
-            extension.apply plugin: 'com.jakewharton.butterknife'
-
             extension.description "lib"
-            setAndroidConfig extension.android
+            setDefaultConfig extension
+
             extension.android {
                 defaultConfig {
                     //Library 如果不指定defaultPublishConfig 构建都会是release版本
                     defaultPublishConfig 'debug'
-                    publishNonDefault true
-                    //组件混淆合并
+
+                    //指定组件混淆规则合并目录
                     consumerProguardFiles 'proguaed-rules.pro'
                 }
             }
             setDependencies extension.dependencies
     }
 
-    setDefaultConfig = {
-        extension ->
-            setAndroidConfig extension.android
-            setDependencies extension.dependencies
-    }
+
 
     //设置Android配置
     setAndroidConfig = {
         extension ->
-            extension.compileSdkVersion 28
-            extension.buildToolsVersion "28.0.0"
+            extension.compileSdkVersion compileSdkVer
+            extension.buildToolsVersion buildToolsVer
 
             extension.defaultConfig {
-                targetSdkVersion 26
-                minSdkVersion 16
-                testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+                targetSdkVersion targetSdkVer
+                minSdkVersion minSdkVer
+
+                //Java 1.8支持
+                extension.compileOptions {
+                    sourceCompatibility JavaVersion.VERSION_1_8
+                    targetCompatibility JavaVersion.VERSION_1_8
+                }
+
+                //ARouter 初始化配置
                 javaCompileOptions {
                     annotationProcessorOptions {
                         arguments = [AROUTER_MODULE_NAME: extension.project.getName()]
                     }
                 }
             }
+
             extension.buildTypes {
                 debug {
                     extension.defaultConfig { minSdkVersion 16 }
@@ -84,7 +120,7 @@ project.ext {
             }
             extension.project.tasks.whenTaskAdded { task ->
                 if (task.name.contains("lint")//不启动lint代码扫描潜在bug可以使用
-                        || task.name.equals("clean")
+//                        || task.name.equals("clean")
                         || task.name.contains("Aidl") //项目中有用到aidl则不可以舍弃这个任务
                         || task.name.contains("mockableAndroidJar")//用不到测试的时候就可以先关闭
                         || task.name.contains("UnitTest")//用不到测试的时候就可以先关闭

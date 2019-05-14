@@ -2,8 +2,6 @@
 apply from: "${rootProject.rootDir}/basic_config.gradle"
 project.ext.setLibDefaultConfig project
 
-apply plugin: 'com.jakewharton.butterknife'
-
 android {
     resourcePrefix "core_"
 
@@ -21,10 +19,7 @@ android {
 
 dependencies {
 
-    /**
-     * Butterknife 注解生成
-     */
-    api 'com.jakewharton:butterknife:8.8.1'
+
 
     /**
      * Glide 图像加载
@@ -68,5 +63,5 @@ dependencies {
     api 'com.orhanobut:logger:2.2.0'
 
 
-
 }
+

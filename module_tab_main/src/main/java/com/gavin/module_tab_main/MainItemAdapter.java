@@ -1,7 +1,7 @@
 package com.gavin.module_tab_main;
 
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;

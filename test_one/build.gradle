@@ -1,4 +1,5 @@
 apply from: "${rootProject.rootDir}/basic_config.gradle"
+
 if (project.ext.isTabOneRun) {
     project.ext.setAppDefaultConfig project
 } else {
@@ -40,13 +41,13 @@ android {
             }
         }
     }
-
 }
 
 dependencies {
     implementation project(':common')
 
-    annotationProcessor 'com.alibaba:arouter-compiler:1.2.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    kapt "com.alibaba:arouter-compiler:${rootProject.arouter_annotation_version}"
+    kapt "com.jakewharton:butterknife-compiler:${rootProject.butterknife_version}"
 
 }
+

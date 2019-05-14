@@ -1,6 +1,6 @@
 package com.gavin.test_one;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class TabOneDebugActivity extends AppCompatActivity {

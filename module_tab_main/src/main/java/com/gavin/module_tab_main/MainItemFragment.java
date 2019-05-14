@@ -1,8 +1,9 @@
 package com.gavin.module_tab_main;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.gavin.common.base.BaseFragment;
 import com.gavin.core.network.NetManager;

@@ -1,15 +1,16 @@
 package com.gavin.module_tab_main;
 
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.gavin.common.base.BaseFragment;
-import com.gavin.lib_link.constant.FragmentPath;
+import com.gavin.common.constants.FragmentPath;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +64,6 @@ public class MainFragment extends BaseFragment {
 
         @Override
         public Fragment getItem(int i) {
-
             return MainItemFragment.newInstance("1","2");
         }
 
@@ -72,6 +72,12 @@ public class MainFragment extends BaseFragment {
             return mTabs.size();
         }
 
+        @Nullable
+        @Override
+        public CharSequence getPageTitle(int position) {
+
+            return mTabs.get(position);
+        }
     }
 
 }

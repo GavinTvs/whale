@@ -2,7 +2,7 @@ package com.gavin.test_one;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.facade.template.IProvider;
-import com.gavin.lib_link.constant.ProviderPath;
+import com.gavin.common.constants.ProviderPath;
 
 /**
  * @author : com.gavin

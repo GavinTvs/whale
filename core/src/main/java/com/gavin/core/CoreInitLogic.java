@@ -1,6 +1,6 @@
 package com.gavin.core;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.Log;
 
 import com.alibaba.android.arouter.launcher.ARouter;

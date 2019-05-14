@@ -5,8 +5,8 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.gavin.common.base.BaseFragment;
-import com.gavin.lib_link.constant.DataKey;
-import com.gavin.lib_link.constant.FragmentPath;
+import com.gavin.common.constants.DataKey;
+import com.gavin.common.constants.FragmentPath;
 import com.orhanobut.logger.Logger;
 
 import butterknife.BindView;

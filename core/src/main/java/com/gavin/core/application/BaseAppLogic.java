@@ -1,7 +1,7 @@
 package com.gavin.core.application;
 
 import android.content.res.Configuration;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * @author : com.gavin
