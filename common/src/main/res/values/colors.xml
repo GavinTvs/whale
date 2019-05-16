@@ -15,7 +15,7 @@
     <color name="common_green">#008000</color>
 
     <!--统一颜色-->
-    <color name="common_background_color">#F2F2F2</color>
+    <color name="common_background_color">#ffffff</color>
 
     <color name="common_text_color_importance">#222222</color>
     <color name="common_text_color_normal">#666666</color>

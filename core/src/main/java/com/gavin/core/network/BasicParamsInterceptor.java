@@ -1,11 +1,15 @@
 package com.gavin.core.network;
 
 
+import android.os.Build;
+import android.webkit.WebSettings;
+
 import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.DeviceUtils;
 import com.blankj.utilcode.util.NetworkUtils;
 import com.blankj.utilcode.util.PhoneUtils;
 import com.blankj.utilcode.util.TimeUtils;
+import com.gavin.core.CoreInitLogic;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -54,7 +58,7 @@ public class BasicParamsInterceptor implements Interceptor {
 
         // 新的请求
         Request newRequest = oldRequest.newBuilder()
-                .header(USER_AGENT,System.getProperty("http.agent")+ AppUtils.getAppName())
+                .header(USER_AGENT,getUserAgent())
                 .method(oldRequest.method(), oldRequest.body())
                 .url(authorizedUrlBuilder.build())
                 .build();
@@ -93,5 +97,27 @@ public class BasicParamsInterceptor implements Interceptor {
         return commomParamsMap;
     }
 
+    private static String getUserAgent() {
+        String userAgent = "";
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            try {
+                userAgent = WebSettings.getDefaultUserAgent(CoreInitLogic.getApplication());
+            } catch (Exception e) {
+                userAgent = System.getProperty("http.agent");
+            }
+        } else {
+            userAgent = System.getProperty("http.agent");
+        }
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0, length = userAgent.length(); i < length; i++) {
+            char c = userAgent.charAt(i);
+            if (c <= '\u001f' || c >= '\u007f') {
+                sb.append(String.format("\\u%04x", (int) c));
+            } else {
+                sb.append(c);
+            }
+        }
+        return sb.toString();
+    }
 
 }

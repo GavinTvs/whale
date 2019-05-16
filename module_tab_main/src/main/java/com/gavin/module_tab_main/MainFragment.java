@@ -64,7 +64,7 @@ public class MainFragment extends BaseFragment {
 
         @Override
         public Fragment getItem(int i) {
-            return MainItemFragment.newInstance("1","2");
+            return MainItemFragment.Companion.newInstance("1","2");
         }
 
         @Override
