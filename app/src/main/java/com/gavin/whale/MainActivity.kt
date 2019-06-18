@@ -1,22 +1,18 @@
 package com.gavin.whale
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
-import android.widget.FrameLayout
-import butterknife.BindView
-
+import androidx.fragment.app.Fragment
+import butterknife.OnClick
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
+import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.FragmentUtils
 import com.gavin.common.base.BaseActivity
 import com.gavin.common.constants.ActivityPath
 import com.gavin.common.constants.DataKey
 import com.gavin.common.constants.FragmentPath
-
-import java.util.LinkedList
-
-import butterknife.OnClick
+import java.util.*
 
 
 /**
@@ -26,16 +22,13 @@ import butterknife.OnClick
 @Route(path = ActivityPath.APP_MAIN)
 class MainActivity : BaseActivity() {
 
-    @BindView(R.id.fl_main)
-    lateinit var flMain: FrameLayout
-
     private val mainTabFragments = LinkedList<Fragment>()
 
     override fun onBaseInitAfter(savedInstanceState: Bundle?) {
 
         initFragments()
         FragmentUtils.add(supportFragmentManager, mainTabFragments, R.id.fl_main, 0)
-
+        BarUtils.setStatusBarVisibility(this, false)
     }
 
     /**
@@ -46,8 +39,19 @@ class MainActivity : BaseActivity() {
             val bundle = Bundle()
             bundle.putString(DataKey.KEY_TEST_ONE, "第" + i + "页")
             bundle.putString(DataKey.KEY_TEST_TWO, "第" + i + "页")
+            var fragmentPath = ""
+            when (i) {
+                0 -> {
+                    fragmentPath = FragmentPath.TAB_I
+                }
+                1 -> {
+                    fragmentPath = FragmentPath.TAB_II
+                }
+                2 -> {
+                    fragmentPath = FragmentPath.TAB_III
+                }
+            }
 
-            val fragmentPath = if (i == 0) FragmentPath.MODULE_TAB_MAIN else FragmentPath.TEXT_ONE
             val tab: Fragment? = ARouter.getInstance()
                     .build(fragmentPath)
                     .navigation() as Fragment?
@@ -60,8 +64,8 @@ class MainActivity : BaseActivity() {
 
     @OnClick(R.id.rv_tab_one, R.id.rv_tab_center, R.id.rv_tab_three)
     fun onViewClicked(view: View) {
-        when(view.id){
-            R.id.rv_tab_one ->{
+        when (view.id) {
+            R.id.rv_tab_one -> {
                 FragmentUtils.showHide(mainTabFragments[0], mainTabFragments)
             }
             R.id.rv_tab_center -> {

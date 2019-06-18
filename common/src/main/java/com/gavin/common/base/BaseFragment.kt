@@ -13,14 +13,11 @@ import android.view.ViewGroup
 import butterknife.ButterKnife
 import butterknife.Unbinder
 
-import com.gavin.common.base.addTo
-
 /**
  * @author : com.gavin
  * @date 2018/9/5.
  */
 abstract class BaseFragment : Fragment() {
-    protected var mContext: Context? = null
     protected var unbinder: Unbinder? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,16 +30,18 @@ abstract class BaseFragment : Fragment() {
         if (arguments != null) {
             initFragmentArguments()
         }
-        onViewUnInject()
-        unbinder = ButterKnife.bind(this, view)
-        onViewInjected()
+        onBaseCreateAfter()
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        unbinder = ButterKnife.bind(this, view)
+        onBaseViewCreateAfter()
+    }
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        mContext = context
     }
 
     @LayoutRes
@@ -51,7 +50,7 @@ abstract class BaseFragment : Fragment() {
     /**
      * View 未注入完成
      */
-    protected fun onViewUnInject() {
+    protected fun onBaseCreateAfter() {
 
     }
 
@@ -65,7 +64,7 @@ abstract class BaseFragment : Fragment() {
     /**
      * View 已注入完成
      */
-    protected abstract fun onViewInjected()
+    protected abstract fun onBaseViewCreateAfter()
 
     override fun onDestroyView() {
         super.onDestroyView()

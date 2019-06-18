@@ -4,9 +4,9 @@ project.ext {
 
     appName = "52Hz鲸"
 
-    isTabOneRun = false
-    isTabMainRun = false
-    isTestDebug = false
+    isTabIRun = false
+    isTabIIRun = false
+    isTabIIIRun = false
 
     compileSdkVer = 28
     buildToolsVer = "28.0.3"
@@ -26,6 +26,12 @@ project.ext {
 
             setAndroidConfig extension.android
             setDependencies extension.dependencies
+
+            //优化编译时间
+            extension.android.dexOptions {
+                preDexLibraries true
+                maxProcessCount 8
+            }
     }
 
     //设置App配置

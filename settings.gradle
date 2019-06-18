@@ -1,1 +1,1 @@
-include ':app', ':core', ':common', ':test_one', ':module_tab_main', ':global'//, ':widget_ad'
+include ':app', ':core', ':common', ':tabiii', ':tabi', ':support', ':tabii'//, ':widget_ad'

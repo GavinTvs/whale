@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--主题颜色-->
-    <color name="common_colorPrimary">#3F51B5</color>
-    <color name="common_colorPrimaryDark">#303F9F</color>
-    <color name="common_colorAccent">#FF4081</color>
+    <color name="common_colorPrimary">#607d8b</color>
+    <color name="common_colorPrimaryDark">#455a64</color>
+    <color name="common_colorAccent">#00bfa5</color>
 
     <!--通用颜色-->
     <color name="common_transparent">#00000000</color>

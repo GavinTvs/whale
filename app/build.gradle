@@ -35,12 +35,15 @@ android {
 
 dependencies {
     implementation project(':common')
-    if (!project.ext.isTabOneRun) {
-        implementation project(':test_one')
+    if (!project.ext.isTabIRun) {
+        implementation project(':tabi')
+    }
+    if (!project.ext.isTabIIRun) {
+        implementation project(':tabii')
     }
 
-    if (!project.ext.isTabMainRun) {
-        implementation project(':module_tab_main')
+    if (!project.ext.isTabIIIRun) {
+        implementation project(':tabiii')
     }
 
     kapt "com.alibaba:arouter-compiler:${rootProject.arouter_annotation_version}"

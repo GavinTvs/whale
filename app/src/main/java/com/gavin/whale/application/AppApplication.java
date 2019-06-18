@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.gavin.core.CoreInitLogic;
 import com.gavin.core.application.BaseApplication;
-import com.gavin.module_tab_main.MainTabInitLogic;
+import com.gavin.tabi.TabIInitLogic;
 
 /**
  * @author : com.gavin
@@ -23,6 +23,6 @@ public class AppApplication extends BaseApplication {
     @Override
     protected void initLogic() {
         registerApplicationLogic(CoreInitLogic.class);
-        registerApplicationLogic(MainTabInitLogic.class);
+        registerApplicationLogic(TabIInitLogic.class);
     }
 }

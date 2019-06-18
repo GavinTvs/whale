@@ -7,10 +7,11 @@ package com.gavin.common.constants;
  */
 
 public class FragmentPath {
-    /**
-     * TAB_ONE
-     */
-    public static final String TEXT_ONE = "/text/one";
 
-    public static final String MODULE_TAB_MAIN = "/module_tab_main/main_tab";
+    public static final String TAB_I = "/i/maini";
+
+    public static final String TAB_II = "/ii/maini";
+
+    public static final String TAB_III = "/iii/mainiii";
+
 }
