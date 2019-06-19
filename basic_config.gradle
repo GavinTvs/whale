@@ -6,7 +6,7 @@ project.ext {
 
     isTabIRun = false
     isTabIIRun = false
-    isTabIIIRun = false
+    isTabIIIRun = true
 
     compileSdkVer = 28
     buildToolsVer = "28.0.3"

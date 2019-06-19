@@ -3,6 +3,7 @@
     package="com.gavin.tabi">
 
     <application
+        android:name=".TabIDebugApplication"
         android:allowBackup="true"
         android:label="@string/app_name"
         android:supportsRtl="true">

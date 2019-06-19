@@ -8,6 +8,8 @@ package com.gavin.common.constants;
 
 public class FragmentPath {
 
+    public static final String PLACEHOLDER = "/placeholder/fragment";
+
     public static final String TAB_I = "/i/maini";
 
     public static final String TAB_II = "/ii/maini";

@@ -13,6 +13,8 @@ import com.gavin.common.constants.ActivityPath
 import com.gavin.common.constants.DataKey
 import com.gavin.common.constants.FragmentPath
 import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 
 /**
@@ -22,12 +24,13 @@ import java.util.*
 @Route(path = ActivityPath.APP_MAIN)
 class MainActivity : BaseActivity() {
 
-    private val mainTabFragments = LinkedList<Fragment>()
+    private val mainTabFragments = LinkedHashMap<String,Fragment>()
+    private var mShowFragmentPath = FragmentPath.TAB_I
 
     override fun onBaseInitAfter(savedInstanceState: Bundle?) {
 
         initFragments()
-        FragmentUtils.add(supportFragmentManager, mainTabFragments, R.id.fl_main, 0)
+        FragmentUtils.add(supportFragmentManager, ArrayList(mainTabFragments.values), R.id.fl_main, 0)
         BarUtils.setStatusBarVisibility(this, false)
     }
 
@@ -55,26 +58,40 @@ class MainActivity : BaseActivity() {
             val tab: Fragment? = ARouter.getInstance()
                     .build(fragmentPath)
                     .navigation() as Fragment?
+
             if (tab != null) {
                 tab.arguments = bundle
-                mainTabFragments.add(tab)
+                mainTabFragments[fragmentPath] = tab
             }
         }
     }
 
     @OnClick(R.id.rv_tab_one, R.id.rv_tab_center, R.id.rv_tab_three)
     fun onViewClicked(view: View) {
+        var showFragmentPath = FragmentPath.PLACEHOLDER
+
         when (view.id) {
             R.id.rv_tab_one -> {
-                FragmentUtils.showHide(mainTabFragments[0], mainTabFragments)
+                showFragmentPath = FragmentPath.TAB_I
             }
             R.id.rv_tab_center -> {
-                FragmentUtils.showHide(mainTabFragments[1], mainTabFragments)
+                showFragmentPath = FragmentPath.TAB_II
             }
             R.id.rv_tab_three -> {
-                FragmentUtils.showHide(mainTabFragments[2], mainTabFragments)
+                showFragmentPath = FragmentPath.TAB_III
             }
         }
+        var showFragment = ARouter.getInstance()
+                .build(showFragmentPath)
+                .navigation() as Fragment?
+        if(showFragment == null){
+            showFragment = ARouter.getInstance()
+                    .build(FragmentPath.PLACEHOLDER)
+                    .navigation() as Fragment
+        }
+        mShowFragmentPath = showFragmentPath
+        FragmentUtils.showHide(showFragment, ArrayList(mainTabFragments.values))
+
     }
 
 

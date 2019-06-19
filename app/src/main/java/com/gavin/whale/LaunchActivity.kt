@@ -32,6 +32,7 @@ class LaunchActivity : BaseActivity() {
                     ARouter.getInstance()
                             .build(ActivityPath.APP_MAIN)
                             .navigation()
+                    finish()
                 }.addTo(mBaseCompositeDisposable)
     }
 

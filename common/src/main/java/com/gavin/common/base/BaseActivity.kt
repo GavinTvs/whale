@@ -29,13 +29,11 @@ fun Disposable.addTo(c:CompositeDisposable){
 
 abstract class BaseActivity : RxAppCompatActivity() {
 
-    lateinit var mContext: Context
     lateinit var mBaseCompositeDisposable:CompositeDisposable
     var unbinder: Unbinder? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    final override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mContext = this
         mBaseCompositeDisposable= CompositeDisposable()
         onBaseInitBefore(savedInstanceState)
         setContentView(initContentViewId())
