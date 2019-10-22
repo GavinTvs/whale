@@ -19,7 +19,7 @@ android {
 }
 
 dependencies {
-    api project(':framework:core')
+    api project(':core')
     api project(':framework:network')
 
     /**

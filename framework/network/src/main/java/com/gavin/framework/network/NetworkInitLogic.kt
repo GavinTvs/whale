@@ -1,6 +1,7 @@
-package com.gavin.framework
+package com.gavin.framework.network
 
 import com.gavin.core.application.BaseAppLogic
+
 
 /**
  * @author lyg
@@ -11,4 +12,8 @@ class NetworkInitLogic : BaseAppLogic() {
     override fun onCreate() {
         super.onCreate()
     }
+
+
+
+
 }

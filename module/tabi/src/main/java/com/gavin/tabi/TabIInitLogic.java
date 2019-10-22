@@ -1,7 +1,8 @@
 package com.gavin.tabi;
 
+import com.gavin.common.NetManager;
 import com.gavin.core.application.BaseAppLogic;
-import com.gavin.framework.network.NetManager;
+import com.gavin.framework.network.AbsNetManager;
 
 /**
  * @author : com.gavin
@@ -14,6 +15,5 @@ public class TabIInitLogic extends BaseAppLogic {
     @Override
     public void onCreate() {
         super.onCreate();
-        NetManager.getInstance().initNetConfig("http://v.juhe.cn/");
     }
 }

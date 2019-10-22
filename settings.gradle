@@ -1,8 +1,8 @@
 include ':app',
-        ':framework:core',
+        ':core',
         ':framework:support',
         ':framework:network',
-        ':common',
+        ':module:common',
         ':module:tabi',
         ':module:tabii',
         ':module:tabiii'

@@ -44,7 +44,7 @@ android {
 }
 
 dependencies {
-    implementation project(':common')
+    implementation project(':module:common')
 
     kapt "com.alibaba:arouter-compiler:${rootProject.arouter_annotation_version}"
     kapt "com.jakewharton:butterknife-compiler:${rootProject.butterknife_version}"

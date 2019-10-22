@@ -4,8 +4,9 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ToastUtils
+import com.gavin.common.NetManager
 import com.gavin.common.base.BaseFragment
-import com.gavin.framework.network.NetManager
+import com.gavin.framework.network.AbsNetManager
 import com.gavin.tabi.network.MainApi
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -67,7 +68,7 @@ class TabIItemFragment : BaseFragment() {
      */
     @SuppressLint("CheckResult")
     private fun netNewsDates(consumer: (success: TabIItemEntity)->Unit) {
-        NetManager.getInstance().getApi(MainApi::class.java).getNews(JUHE_APP_KEY, "top")
+        NetManager.mInstance.getApi(MainApi::class.java).getNews(JUHE_APP_KEY, "top")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(consumer,{
