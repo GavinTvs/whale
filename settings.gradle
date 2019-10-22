@@ -2,10 +2,9 @@ include ':app',
         ':framework:core',
         ':framework:support',
         ':framework:network',
-        ':network',
         ':common',
-        ':tabi',
-        ':tabii',
-        ':tabiii'
+        ':module:tabi',
+        ':module:tabii',
+        ':module:tabiii'
 
 //, ':widget_ad'
