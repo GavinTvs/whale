@@ -1,4 +1,4 @@
-package com.gavin.core.network;
+package com.gavin.framework.network;
 
 
 import android.os.Build;
@@ -10,6 +10,7 @@ import com.blankj.utilcode.util.NetworkUtils;
 import com.blankj.utilcode.util.PhoneUtils;
 import com.blankj.utilcode.util.TimeUtils;
 import com.gavin.core.CoreInitLogic;
+import com.gavin.framework.NetworkInitLogic;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -97,11 +98,11 @@ public class BasicParamsInterceptor implements Interceptor {
         return commomParamsMap;
     }
 
-    private static String getUserAgent() {
+    private String getUserAgent() {
         String userAgent = "";
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             try {
-                userAgent = WebSettings.getDefaultUserAgent(CoreInitLogic.getApplication());
+                userAgent = WebSettings.getDefaultUserAgent(NetworkInitLogic.getApplication());
             } catch (Exception e) {
                 userAgent = System.getProperty("http.agent");
             }

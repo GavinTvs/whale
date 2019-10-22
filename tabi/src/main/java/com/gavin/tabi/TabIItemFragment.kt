@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ToastUtils
 import com.gavin.common.base.BaseFragment
-import com.gavin.core.network.NetManager
+import com.gavin.framework.network.NetManager
 import com.gavin.tabi.network.MainApi
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

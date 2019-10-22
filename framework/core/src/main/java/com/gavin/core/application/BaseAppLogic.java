@@ -11,7 +11,7 @@ public class BaseAppLogic {
     protected static BaseApplication mApplication;
     public BaseAppLogic() {}
 
-    public void setApplication(@NonNull BaseApplication application) {
+    public final void setApplication(@NonNull BaseApplication application) {
         mApplication = application;
     }
 

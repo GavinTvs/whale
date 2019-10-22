@@ -19,7 +19,8 @@ android {
 }
 
 dependencies {
-    api project(':core')
+    api project(':framework:core')
+    api project(':framework:network')
 
     /**
      * Butterknife 注解生成

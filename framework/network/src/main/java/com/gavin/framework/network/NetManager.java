@@ -1,6 +1,9 @@
-package com.gavin.core.network;
+package com.gavin.framework.network;
 
 import androidx.annotation.NonNull;
+
+import com.gavin.framework.network.BasicParamsInterceptor;
+import com.gavin.framework.network.MutiBaseUrlInterceptor;
 
 import java.util.concurrent.TimeUnit;
 

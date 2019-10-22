@@ -1,0 +1,39 @@
+//引用基础配置 （必须放在初始化之前）
+apply from: "${rootProject.rootDir}/basic_config.gradle"
+project.ext.setLibDefaultConfig project
+
+android {
+    resourcePrefix "network_"
+
+
+    defaultConfig {
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation project(":framework:core")
+
+    /**
+     * NetWork retrofit + okHttp + Gson
+     */
+    api 'com.squareup.retrofit2:retrofit:2.4.0'
+    api 'com.squareup.retrofit2:converter-gson:2.4.0'
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    api 'com.squareup.okhttp3:okhttp:3.11.0'
+    api 'com.google.code.gson:gson:2.8.5'
+
+    /**
+     * Util库
+     * readme: https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/README-CN.md
+     */
+    api 'com.blankj:utilcode:1.19.3'
+}

@@ -28,7 +28,7 @@ class LaunchActivity : BaseActivity() {
 
     override fun onBaseInitAfter(savedInstanceState: Bundle?) {
         Observable.timer(2, TimeUnit.SECONDS)
-                .subscribe { aLong ->
+                .subscribe { _ ->
                     ARouter.getInstance()
                             .build(ActivityPath.APP_MAIN)
                             .navigation()

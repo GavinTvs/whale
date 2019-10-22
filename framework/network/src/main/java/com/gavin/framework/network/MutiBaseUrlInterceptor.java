@@ -1,4 +1,4 @@
-package com.gavin.core.network;
+package com.gavin.framework.network;
 
 import android.text.TextUtils;
 

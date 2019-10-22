@@ -6,7 +6,7 @@ project.ext {
 
     isTabIRun = false
     isTabIIRun = false
-    isTabIIIRun = true
+    isTabIIIRun = false
 
     compileSdkVer = 28
     buildToolsVer = "28.0.3"
@@ -42,7 +42,7 @@ project.ext {
             setDefaultConfig extension
 
             extension.android.defaultConfig {
-                if (!"app".equals(extension.getName())) {
+                if ("app" != extension.getName()) {
                     applicationId mApplicationId + "." + extension.getName()
                 } else {
                     applicationId mApplicationId
@@ -54,7 +54,7 @@ project.ext {
              * 更改applicationId和app_name
              */
             extension.android.buildTypes {
-                if (!"app".equals(extension.getName())) {
+                if ("app" != extension.getName()) {
                     appName = extension.getName()
                 }
                 debug {

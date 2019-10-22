@@ -1,1 +1,11 @@
-include ':app', ':core', ':common', ':tabiii', ':tabi', ':support', ':tabii'//, ':widget_ad'
+include ':app',
+        ':framework:core',
+        ':framework:support',
+        ':framework:network',
+        ':network',
+        ':common',
+        ':tabi',
+        ':tabii',
+        ':tabiii'
+
+//, ':widget_ad'
