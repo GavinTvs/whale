@@ -1,6 +1,4 @@
-apply from: "${rootProject.rootDir}/core/basic_config.gradle"
-
-project.setAppDefaultConfig project
+rootProject.setAppDefaultConfig project
 
 /**
  * 获取第三方账号配置
@@ -46,7 +44,7 @@ dependencies {
         implementation project(':module:tabiii')
     }
 
-    kapt "com.alibaba:arouter-compiler:${version_config.arouter_annotation_version}"
-    kapt "com.jakewharton:butterknife-compiler:${version_config.butterknife_version}"
+    kapt "com.alibaba:arouter-compiler:${rootProject.version_config.arouter_annotation_version}"
+    kapt "com.jakewharton:butterknife-compiler:${rootProject.version_config.butterknife_version}"
 }
 

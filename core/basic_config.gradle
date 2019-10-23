@@ -32,10 +32,9 @@ project.ext {
 
             extension.android.defaultConfig {
                 if ("app" != extension.getName()) {
-                    applicationId project.ext.applicationId + "." + extension.getName()
+                    applicationId applicationId + "." + extension.getName()
                 } else {
-                    applicationId project.ext.applicationId
-
+                    applicationId applicationId
                 }
             }
             /**
@@ -44,14 +43,14 @@ project.ext {
              */
             extension.android.buildTypes {
                 if ("app" != extension.getName()) {
-                    project.appName = extension.getName()
+                    appName = extension.getName()
                 }
                 debug {
                     //applicationIdSuffix ".debug"
-                    resValue("string", "app_name", project.appName + "_DEBUG")
+                    resValue("string", "app_name", appName + "_DEBUG")
                 }
                 release {
-                    resValue("string", "app_name", project.appName)
+                    resValue("string", "app_name", appName)
                 }
             }
     }
@@ -80,12 +79,12 @@ project.ext {
     //设置Android配置
     setAndroidConfig = {
         extension ->
-            extension.compileSdkVersion project.compileSdkVer
-            extension.buildToolsVersion project.buildToolsVer
+            extension.compileSdkVersion compileSdkVer
+            extension.buildToolsVersion buildToolsVer
 
             extension.defaultConfig {
-                targetSdkVersion project.targetSdkVer
-                minSdkVersion project.minSdkVer
+                targetSdkVersion targetSdkVer
+                minSdkVersion minSdkVer
 
                 //Java 1.8支持
                 extension.compileOptions {

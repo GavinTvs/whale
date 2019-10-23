@@ -2,12 +2,6 @@
 apply from: "${rootProject.rootDir}/core/basic_config.gradle"
 apply from: "${rootProject.rootDir}/config.gradle"
 
-ext {
-    arouter_annotation_version = "1.2.1"
-    glide_annotation_version = "4.8.0"
-    butterknife_version = "10.0.0"
-}
-
 buildscript {
     repositories {
         mavenCentral()

@@ -1,6 +1,4 @@
 //引用基础配置 （必须放在初始化之前）
-apply from: "${rootProject.rootDir}/core/basic_config.gradle"
-
 if (project.isTabIRun) {
     project.setAppDefaultConfig project
 } else {

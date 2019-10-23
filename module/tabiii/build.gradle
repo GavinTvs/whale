@@ -1,5 +1,3 @@
-apply from: "${rootProject.rootDir}/core/basic_config.gradle"
-
 if (project.isTabIIIRun) {
     project.setAppDefaultConfig project
 } else {
