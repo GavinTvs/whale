@@ -1,7 +1,7 @@
 ext {
     isTabIRun = false
     isTabIIRun = false
-    isTabIIIRun = false
+    isTabIIIRun = true
 
     applicationId = "com.gavin.whale"
     appName = "52Hz鲸"

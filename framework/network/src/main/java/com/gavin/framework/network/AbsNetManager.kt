@@ -10,6 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 /**
+ *
  * @author : Gavin
  * @date 2018-08-29
  * 网络管理类
@@ -28,7 +29,7 @@ abstract class AbsNetManager {
     private val outOfNetCacheTime = 60 * 60 * 24 * 7
     private val netWorkCacheTime = 60
 
-    private var mBaseHostUrl: String
+    private var mMultiHostUrlMap:HashMap<String,String>? = null
     private var mRetrofit: Retrofit
 
     companion object {
@@ -39,46 +40,36 @@ abstract class AbsNetManager {
         private const val TIME_OUT = 10
     }
 
-    abstract fun configBaseUrl(): String
+    constructor(hostUrl:String,httpClientBuild:OkHttpClient.Builder? = null,multiHostUrlMap:HashMap<String,String>? = null){
 
-    init {
-        mBaseHostUrl = configBaseUrl()
-        val oriBuild = initHttpClientBuild()
-        val httpClientBuild = addBaseBuildParams(oriBuild)
-        mRetrofit = initRetrofitBuild(httpClientBuild.build()).build()
+        mMultiHostUrlMap = multiHostUrlMap
+        val httpClient = if(httpClientBuild != null){
+            httpClientBuild.build()
+        }else{
+            createDefHttpClientBuild(multiHostUrlMap).build()
+        }
+
+        mRetrofit = createDefRetrofitBuild(httpClient,hostUrl).build()
     }
 
-    /**
-     * 构建HttpClient
-     * @return
-     */
-    private fun initHttpClientBuild(): OkHttpClient.Builder {
-        return createHttpClientBuild()?:createDefHttpClientBuild()
-    }
-
-
-    /**
-     * 初始化Retrofit
-     * @param okHttpClient
-     * @param baseUrl
-     */
-    private fun initRetrofitBuild(okHttpClient: OkHttpClient): Retrofit.Builder {
-        return createRetrofitBuild()?:createDefRetrofitBuild(okHttpClient)
-    }
-
-    private fun createDefHttpClientBuild(): OkHttpClient.Builder {
-        return OkHttpClient.Builder()
+    private fun createDefHttpClientBuild(multiHostUrlMap: HashMap<String, String>? = null): OkHttpClient.Builder {
+        val httpClientBuild = OkHttpClient.Builder()
                 .addInterceptor(CommonParamsInterceptor())
                 .connectionPool(ConnectionPool(20, 10, TimeUnit.SECONDS))
                 .connectTimeout(TIME_OUT.toLong(), TimeUnit.SECONDS)
                 .readTimeout(TIME_OUT.toLong(), TimeUnit.SECONDS)
                 .writeTimeout(TIME_OUT.toLong(), TimeUnit.SECONDS)
                 .retryOnConnectionFailure(false)
+
+        if(!multiHostUrlMap.isNullOrEmpty()){
+            httpClientBuild.addInterceptor(MultiBaseUrlInterceptor(multiHostUrlMap))
+        }
+        return httpClientBuild
     }
 
-    private fun createDefRetrofitBuild(okHttpClient: OkHttpClient): Retrofit.Builder {
+    private fun createDefRetrofitBuild(okHttpClient: OkHttpClient,hostUrl:String): Retrofit.Builder {
         return Retrofit.Builder()
-                .baseUrl(mBaseHostUrl)
+                .baseUrl(hostUrl)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
@@ -87,28 +78,5 @@ abstract class AbsNetManager {
     fun <T> getApi(api: Class<T>): T {
         return mRetrofit.create(api)
     }
-
-    private fun addBaseBuildParams(oriBuild: OkHttpClient.Builder): OkHttpClient.Builder {
-        return oriBuild.addInterceptor(MutiBaseUrlInterceptor())
-    }
-
-    /**
-     * 开放方法，子类可以重写HttpClient
-     * 创建HttpClient.Build
-     */
-    open fun createHttpClientBuild(): OkHttpClient.Builder? {
-        return null
-    }
-
-    /**
-     * 开放方法，子类可以重写Retrofit.Build
-     */
-    open fun createRetrofitBuild(): Retrofit.Builder? {
-        return null
-    }
-
-
-
-
 
 }

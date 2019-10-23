@@ -1,5 +1,6 @@
 package com.gavin.tabi.network;
 
+import com.gavin.common.NetManager;
 import com.gavin.tabi.TabIItemEntity;
 
 import io.reactivex.Observable;
@@ -20,7 +21,8 @@ public interface MainApi {
      * @param type
      * @return
      */
-    @Headers({"AssignHost:http://v.juhe.cn/"})
+//    @Headers({"AssignHost:"+ NetManager.HOST_JUHE})
+    @Headers({"AssignHost:"+NetManager.HOST_JUHE})
     @GET("/toutiao/index")
     Observable<TabIItemEntity> getNews(@Query("key") String appKey, @Query("type") String type);
 }
