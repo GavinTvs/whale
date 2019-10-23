@@ -1,6 +1,6 @@
-apply from: "${rootProject.rootDir}/basic_config.gradle"
+apply from: "${rootProject.rootDir}/core/basic_config.gradle"
 
-project.ext.setAppDefaultConfig project
+project.setAppDefaultConfig project
 
 /**
  * 获取第三方账号配置
@@ -35,18 +35,18 @@ android {
 
 dependencies {
     implementation project(':module:common')
-    if (!project.ext.isTabIRun) {
+    if (!project.isTabIRun) {
         implementation project(':module:tabi')
     }
-    if (!project.ext.isTabIIRun) {
+    if (!project.isTabIIRun) {
         implementation project(':module:tabii')
     }
 
-    if (!project.ext.isTabIIIRun) {
+    if (!project.isTabIIIRun) {
         implementation project(':module:tabiii')
     }
 
-    kapt "com.alibaba:arouter-compiler:${rootProject.arouter_annotation_version}"
-    kapt "com.jakewharton:butterknife-compiler:${rootProject.butterknife_version}"
+    kapt "com.alibaba:arouter-compiler:${version_config.arouter_annotation_version}"
+    kapt "com.jakewharton:butterknife-compiler:${version_config.butterknife_version}"
 }
 

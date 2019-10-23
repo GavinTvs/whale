@@ -16,14 +16,7 @@ class NetManager:AbsNetManager() {
     }
 
     override fun configBaseUrl(): String {
-        return "http://v.juhe.cn/"
+        return "http://www.baidu.com/"
     }
 
-    override fun createHttpClientBuild(): OkHttpClient.Builder {
-        return super.createHttpClientBuild()
-    }
-
-    override fun createRetrofitBuild(okHttpClient: OkHttpClient, baseUrl: String): Retrofit.Builder {
-        return super.createRetrofitBuild(okHttpClient, baseUrl)
-    }
 }

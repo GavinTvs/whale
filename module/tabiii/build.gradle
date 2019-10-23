@@ -1,9 +1,9 @@
-apply from: "${rootProject.rootDir}/basic_config.gradle"
+apply from: "${rootProject.rootDir}/core/basic_config.gradle"
 
-if (project.ext.isTabIIIRun) {
-    project.ext.setAppDefaultConfig project
+if (project.isTabIIIRun) {
+    project.setAppDefaultConfig project
 } else {
-    project.ext.setLibDefaultConfig project
+    project.setLibDefaultConfig project
 }
 
 android {
@@ -23,7 +23,7 @@ android {
 
     sourceSets {
         debug {
-            if (project.ext.isTabIIIRun) {
+            if (project.isTabIIIRun) {
                 manifest.srcFile 'src/debug/AndroidManifest.xml'
                 res.srcDirs = ['src/debug/res', 'src/main/res']
             } else {
@@ -46,8 +46,8 @@ android {
 dependencies {
     implementation project(':module:common')
 
-    kapt "com.alibaba:arouter-compiler:${rootProject.arouter_annotation_version}"
-    kapt "com.jakewharton:butterknife-compiler:${rootProject.butterknife_version}"
+    kapt "com.alibaba:arouter-compiler:${version_config.arouter_annotation_version}"
+    kapt "com.jakewharton:butterknife-compiler:${version_config.butterknife_version}"
 
 }
 

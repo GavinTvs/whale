@@ -1,5 +1,5 @@
-apply from: "${rootProject.rootDir}/basic_config.gradle"
-project.ext.setLibDefaultConfig project
+apply from: "${rootProject.rootDir}/core/basic_config.gradle"
+project.setLibDefaultConfig project
 android {
     resourcePrefix "common_"
 
@@ -25,7 +25,7 @@ dependencies {
     /**
      * Butterknife 注解生成
      */
-    api "com.jakewharton:butterknife:${rootProject.butterknife_version}"
+    api "com.jakewharton:butterknife:${version_config.butterknife_version}"
 
     /**
      * Support库
@@ -45,6 +45,6 @@ dependencies {
      * Kotlin Support
      */
     api "androidx.core:core-ktx:1.0.2"
-    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${version_config.kotlin_version}"
 
 }

@@ -1,5 +1,5 @@
-apply from: "${rootProject.rootDir}/basic_config.gradle"
-project.ext.setLibDefaultConfig project
+apply from: "${rootProject.rootDir}/core/basic_config.gradle"
+project.setLibDefaultConfig project
 
 android {
     resourcePrefix "global_"

@@ -17,18 +17,18 @@ import retrofit2.converter.gson.GsonConverterFactory
  * 默认配置：
  * 1. 常用公共参数
  * 2. 多baseUrl支持 @see [CommonParamsInterceptor]
- * 3.
  *
  * TODO
  * 1. 网络接口缓存管理
  * 2. 重试管理
+ * 3. 常用错误code处理，业务错误框架
  */
 abstract class AbsNetManager {
 
     private val outOfNetCacheTime = 60 * 60 * 24 * 7
     private val netWorkCacheTime = 60
 
-    private var mBaseHostUrl: String? = null
+    private var mBaseHostUrl: String
     private var mRetrofit: Retrofit
 
     companion object {
@@ -39,20 +39,34 @@ abstract class AbsNetManager {
         private const val TIME_OUT = 10
     }
 
-    abstract fun configBaseUrl():String
+    abstract fun configBaseUrl(): String
 
     init {
         mBaseHostUrl = configBaseUrl()
-        val oriBuild = createHttpClientBuild()
-        val httpClientBuild  = addBaseBuildParams(oriBuild)
-        mRetrofit =  createRetrofitBuild(httpClientBuild.build(), mBaseHostUrl?:throw NullPointerException("must implement configBaseUrl method")).build()
+        val oriBuild = initHttpClientBuild()
+        val httpClientBuild = addBaseBuildParams(oriBuild)
+        mRetrofit = initRetrofitBuild(httpClientBuild.build()).build()
     }
 
     /**
      * 构建HttpClient
      * @return
      */
-    open fun createHttpClientBuild(): OkHttpClient.Builder {
+    private fun initHttpClientBuild(): OkHttpClient.Builder {
+        return createHttpClientBuild()?:createDefHttpClientBuild()
+    }
+
+
+    /**
+     * 初始化Retrofit
+     * @param okHttpClient
+     * @param baseUrl
+     */
+    private fun initRetrofitBuild(okHttpClient: OkHttpClient): Retrofit.Builder {
+        return createRetrofitBuild()?:createDefRetrofitBuild(okHttpClient)
+    }
+
+    private fun createDefHttpClientBuild(): OkHttpClient.Builder {
         return OkHttpClient.Builder()
                 .addInterceptor(CommonParamsInterceptor())
                 .connectionPool(ConnectionPool(20, 10, TimeUnit.SECONDS))
@@ -62,30 +76,39 @@ abstract class AbsNetManager {
                 .retryOnConnectionFailure(false)
     }
 
-
-
-    /**
-     * 初始化Retrofit
-     * @param okHttpClient
-     * @param baseUrl
-     */
-    open fun createRetrofitBuild(okHttpClient: OkHttpClient, baseUrl: String):Retrofit.Builder {
+    private fun createDefRetrofitBuild(okHttpClient: OkHttpClient): Retrofit.Builder {
         return Retrofit.Builder()
-                .baseUrl(baseUrl)
+                .baseUrl(mBaseHostUrl)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
     }
 
-
     fun <T> getApi(api: Class<T>): T {
         return mRetrofit.create(api)
     }
 
-
-
-    private fun addBaseBuildParams(oriBuild:OkHttpClient.Builder):OkHttpClient.Builder{
+    private fun addBaseBuildParams(oriBuild: OkHttpClient.Builder): OkHttpClient.Builder {
         return oriBuild.addInterceptor(MutiBaseUrlInterceptor())
     }
+
+    /**
+     * 开放方法，子类可以重写HttpClient
+     * 创建HttpClient.Build
+     */
+    open fun createHttpClientBuild(): OkHttpClient.Builder? {
+        return null
+    }
+
+    /**
+     * 开放方法，子类可以重写Retrofit.Build
+     */
+    open fun createRetrofitBuild(): Retrofit.Builder? {
+        return null
+    }
+
+
+
+
 
 }

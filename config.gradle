@@ -1,0 +1,21 @@
+ext {
+    isTabIRun = false
+    isTabIIRun = false
+    isTabIIIRun = false
+
+    applicationId = "com.gavin.whale"
+    appName = "52Hz鲸"
+
+    compileSdkVer = 28
+    buildToolsVer = "28.0.3"
+    targetSdkVer = 26
+    minSdkVer = 16
+
+    version_config = [
+            arouter_annotation_version: "1.2.1",
+            glide_annotation_version  : "4.8.0",
+            butterknife_version       : "10.0.0",
+
+            kotlin_version            : '1.3.31'
+    ]
+}
