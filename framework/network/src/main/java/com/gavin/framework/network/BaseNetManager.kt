@@ -20,11 +20,12 @@ import retrofit2.converter.gson.GsonConverterFactory
  * 2. 多baseUrl支持 @see [CommonParamsInterceptor]
  *
  * TODO
- * 1. 网络接口缓存管理
+ * 1. 网络缓存管理
  * 2. 重试管理
- * 3. 常用错误code处理，业务错误框架
+ * 3. 连接池
+ * 4. 常用错误code处理，业务错误框架
  */
-abstract class AbsNetManager {
+abstract class BaseNetManager {
 
     private val outOfNetCacheTime = 60 * 60 * 24 * 7
     private val netWorkCacheTime = 60
@@ -34,8 +35,8 @@ abstract class AbsNetManager {
 
     companion object {
         private val CACHE_CONTROL = "cache_control"
-        private val TAG = AbsNetManager::class.java.name
-        private var mInstance: AbsNetManager? = null
+        private val TAG = BaseNetManager::class.java.name
+        private var mInstance: BaseNetManager? = null
         private val maxCache = (1024 * 1024 * 10).toLong()
         private const val TIME_OUT = 10
     }

@@ -1,8 +1,6 @@
 package com.gavin.tabi;
 
-import com.gavin.common.NetManager;
 import com.gavin.core.application.BaseAppLogic;
-import com.gavin.framework.network.AbsNetManager;
 
 /**
  * @author : com.gavin

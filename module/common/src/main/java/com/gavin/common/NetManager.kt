@@ -1,14 +1,12 @@
 package com.gavin.common
 
-import com.gavin.framework.network.AbsNetManager
-import okhttp3.OkHttpClient
-import retrofit2.Retrofit
+import com.gavin.framework.network.BaseNetManager
 
 /**
  * @author lyg
  * @data 2019-10-22 20:29
  */
-class NetManager:AbsNetManager(hostUrl = "http://www.baidu.com/",multiHostUrlMap = multiUrlMap) {
+class NetManager:BaseNetManager(hostUrl = "http://www.baidu.com/",multiHostUrlMap = multiUrlMap) {
 
     companion object{
         @JvmStatic
