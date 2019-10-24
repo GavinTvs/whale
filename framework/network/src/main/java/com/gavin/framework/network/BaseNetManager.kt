@@ -25,7 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory
  * 3. 连接池
  * 4. 常用错误code处理，业务错误框架
  */
-abstract class BaseNetManager {
+open class BaseNetManager {
 
     private val outOfNetCacheTime = 60 * 60 * 24 * 7
     private val netWorkCacheTime = 60
