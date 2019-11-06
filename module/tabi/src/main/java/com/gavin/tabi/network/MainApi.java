@@ -1,6 +1,6 @@
 package com.gavin.tabi.network;
 
-import com.gavin.common.NetManager;
+import com.gavin.common.network.NetManager;
 import com.gavin.tabi.TabIItemEntity;
 
 import io.reactivex.Observable;

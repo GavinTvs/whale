@@ -1,5 +1,7 @@
 package com.gavin.framework.network
 
+import com.gavin.framework.network.interceptor.CommonParamsInterceptor
+import com.gavin.framework.network.interceptor.MultiBaseUrlInterceptor
 import java.util.concurrent.TimeUnit
 
 import okhttp3.ConnectionPool
