@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ToastUtils
 import com.gavin.common.network.NetManager
 import com.gavin.common.base.BaseFragment
+import com.gavin.support.LoadingInf
 import com.gavin.support.transformer.RxJavaUtils
 import com.gavin.tabi.network.MainApi
 import io.reactivex.android.schedulers.AndroidSchedulers

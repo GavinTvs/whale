@@ -21,8 +21,8 @@ public interface MainApi {
      * @param type
      * @return
      */
-//    @Headers({"AssignHost:"+ NetManager.HOST_JUHE})
-    @Headers({"AssignHost:"+NetManager.HOST_JUHE})
+//    @Headers({"AssignHost:"+ NetManager.HOST_KEY_JUHE})
+    @Headers({"AssignHost:"+NetManager.HOST_KEY_JUHE})
     @GET("/toutiao/index")
     Observable<TabIItemEntity> getNews(@Query("key") String appKey, @Query("type") String type);
 }

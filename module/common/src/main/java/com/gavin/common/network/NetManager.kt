@@ -13,11 +13,11 @@ class NetManager:BaseNetManager(hostUrl = "http://www.baidu.com/",multiHostUrlMa
         @JvmStatic
         val mInstance : NetManager by lazy (mode =LazyThreadSafetyMode.SYNCHRONIZED){ NetManager() }
 
-        const val HOST_JUHE = "host_juhe"
+        const val HOST_KEY_JUHE = "host_key_juhe"
         const val HOST_OTHER = BuildConfig.FLAVOR
 
         val multiUrlMap = HashMap<String,String>().apply {
-            put(HOST_JUHE,"http://v.juhe.cn/")
+            put(HOST_KEY_JUHE,"http://v.juhe.cn/")
         }
     }
 
