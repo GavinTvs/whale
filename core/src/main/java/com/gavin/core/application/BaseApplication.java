@@ -1,6 +1,9 @@
 package com.gavin.core.application;
 
 import android.app.Application;
+import android.content.Context;
+
+import androidx.multidex.MultiDex;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +18,12 @@ public abstract class BaseApplication extends Application{
     private List<BaseAppLogic> loginClassList = new ArrayList<>();
 
     private static BaseApplication mApplication;
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
 
     @Override
     public void onCreate() {

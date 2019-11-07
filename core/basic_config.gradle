@@ -36,6 +36,7 @@ project.ext {
                 } else {
                     applicationId applicationId
                 }
+                multiDexEnabled true
             }
             /**
              * 模块化编译时根据模块名动态更改属性值
@@ -131,5 +132,6 @@ project.ext {
     setDependencies = {
         extension ->
             extension.api fileTree(dir: 'libs', include: ['*.jar'])
+            extension.api "com.android.support:multidex:${version_config.multidex_version}"
     }
 }

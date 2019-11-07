@@ -1,7 +1,7 @@
 ext {
     isTabIRun = false
     isTabIIRun = false
-    isTabIIIRun = true
+    isTabIIIRun = false
 
     applicationId = "com.gavin.whale"
     appName = "52Hz鲸"
@@ -12,6 +12,8 @@ ext {
     minSdkVer = 16
 
     version_config = [
+            multidex_version : "2.0.1",
+
             arouter_annotation_version: "1.2.1",
             glide_annotation_version  : "4.8.0",
             butterknife_version       : "10.0.0",

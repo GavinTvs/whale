@@ -13,7 +13,19 @@ class BaseResponseTransFormer<T> :ObservableTransformer<BaseResponse<T>, T>{
 
     override fun apply(upstream: Observable<BaseResponse<T>>): ObservableSource<T> {
         return upstream.flatMap { baseResponse ->
-            Observable.empty()
+            when(baseResponse.code){
+                0 ->{
+                    Observable.error<T> {
+                        UnknownError()
+                    }
+                }
+                200 ->{
+                    Observable.just(baseResponse.data)
+                }
+            }
+            Observable.error<T> {
+                UnknownError()
+            }
         }
     }
 

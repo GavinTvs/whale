@@ -25,6 +25,11 @@ dependencies {
     api 'com.github.bumptech.glide:annotations:4.8.0'
 
     /**
+     * multidex 支持
+     */
+    api 'com.android.support:multidex:1.0.3'
+
+    /**
      * ARouter 路由
      * git: https://github.com/alibaba/ARouter/tree/develop
      */
