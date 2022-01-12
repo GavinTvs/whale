@@ -1,23 +1,41 @@
 ext {
     isTabIRun = false
-    isTabIIRun = false
+    isTabIIRun = true
     isTabIIIRun = false
 
     applicationId = "com.gavin.whale"
     appName = "52Hz鲸"
 
-    compileSdkVer = 28
-    buildToolsVer = "28.0.3"
-    targetSdkVer = 26
-    minSdkVer = 16
+    compileSdkVer = 30
+    buildToolsVer = "30.0.2"
+    targetSdkVer = 30
+    minSdkVer = 21
 
     version_config = [
-            multidex_version : "2.0.1",
-
-            arouter_annotation_version: "1.2.1",
             glide_annotation_version  : "4.8.0",
             butterknife_version       : "10.0.0",
-
             kotlin_version            : '1.3.31'
     ]
+
+    dependencies_android = [
+            multidex        : "com.android.support:multidex:2.0.1",
+            material        : "com.google.android.material:material:1.0.0",
+            appcompat       : "androidx.appcompat:appcompat:1.2.0",
+            constraintlayout: "androidx.constraintlayout:constraintlayout:2.0.0",
+    ]
+
+    kotlin_version = "1.4.31"
+    dependencies_kotlin = [
+            'reflect'    : "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version",
+            'stdlib'     : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+            'kotlin_jdk7': "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+            'kotlin_jdk8': "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version",
+    ]
+
+    dependencies_third_party = [
+            'arouter_api'     : "com.alibaba:arouter-api:1.5.2",
+            'arouter_compiler': "com.alibaba:arouter-compiler:1.5.2"
+    ]
+
+
 }

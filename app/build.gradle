@@ -33,18 +33,11 @@ android {
 
 dependencies {
     implementation project(':module:common')
-    if (!project.isTabIRun) {
-        implementation project(':module:tabi')
-    }
-    if (!project.isTabIIRun) {
-        implementation project(':module:tabii')
-    }
+    implementation project(':module:tabi')
+    implementation project(':module:tabii')
+    implementation project(':module:tabiii')
 
-    if (!project.isTabIIIRun) {
-        implementation project(':module:tabiii')
-    }
-
-    kapt "com.alibaba:arouter-compiler:${rootProject.version_config.arouter_annotation_version}"
+    kapt dependencies_third_party.arouter_compiler
     kapt "com.jakewharton:butterknife-compiler:${rootProject.version_config.butterknife_version}"
 }
 

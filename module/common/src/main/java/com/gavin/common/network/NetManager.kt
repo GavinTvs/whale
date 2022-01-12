@@ -1,6 +1,5 @@
 package com.gavin.common.network
 
-import com.gavin.common.BuildConfig
 import com.gavin.framework.network.BaseNetManager
 
 /**
@@ -14,7 +13,6 @@ class NetManager:BaseNetManager(hostUrl = "http://www.baidu.com/",multiHostUrlMa
         val mInstance : NetManager by lazy (mode =LazyThreadSafetyMode.SYNCHRONIZED){ NetManager() }
 
         const val HOST_KEY_JUHE = "host_key_juhe"
-        const val HOST_OTHER = BuildConfig.FLAVOR
 
         val multiUrlMap = HashMap<String,String>().apply {
             put(HOST_KEY_JUHE,"http://v.juhe.cn/")

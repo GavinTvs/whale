@@ -1,5 +1,6 @@
 //引用基础配置 （必须放在初始化之前）
 apply from: "${rootProject.rootDir}/core/basic_config.gradle"
+apply from: "${rootProject.rootDir}/config.gradle"
 project.ext.setLibDefaultConfig project
 
 android {
@@ -27,13 +28,13 @@ dependencies {
     /**
      * multidex 支持
      */
-    api 'com.android.support:multidex:1.0.3'
+    api dependencies_android.multidex
 
     /**
      * ARouter 路由
      * git: https://github.com/alibaba/ARouter/tree/develop
      */
-    api 'com.alibaba:arouter-api:1.4.0'
+    api dependencies_third_party.arouter_api
 
     /**
      * Rx
@@ -43,12 +44,6 @@ dependencies {
     api 'com.trello.rxlifecycle2:rxlifecycle:2.2.2'
     api 'com.trello.rxlifecycle2:rxlifecycle-android:2.2.2'
     api 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.1'
-
-    /**
-     * Util库
-     * readme: https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/README-CN.md
-     */
-    api 'com.blankj:utilcode:1.19.3'
 
     /**
      * Log库

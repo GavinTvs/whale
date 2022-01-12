@@ -8,7 +8,6 @@ import com.gavin.common.base.BaseFragment
 import com.gavin.common.constants.DataKey
 import com.gavin.common.constants.FragmentPath
 import com.orhanobut.logger.Logger
-import kotlinx.android.synthetic.main.fragment_tab_ii.*
 
 
 /**
@@ -28,11 +27,9 @@ class TabIIFragment : BaseFragment() {
         }
 
         if (!TextUtils.isEmpty(mParam1) && !TextUtils.isEmpty(mParam2)) {
-
-            tv_text.text = "mParam1:$mParam1 mParam2:$mParam2"
             Logger.d("mParam1:$mParam1 mParam2:$mParam2")
         } else {
-            tv_text.text = "No Params"
+
         }
     }
 

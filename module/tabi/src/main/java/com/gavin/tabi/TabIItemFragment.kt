@@ -2,16 +2,11 @@ package com.gavin.tabi
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ToastUtils
 import com.gavin.common.network.NetManager
 import com.gavin.common.base.BaseFragment
-import com.gavin.support.LoadingInf
 import com.gavin.support.transformer.RxJavaUtils
 import com.gavin.tabi.network.MainApi
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.fragment_tab_main_item.*
 
 /**
  * 首页ItemFragment
@@ -56,8 +51,6 @@ class TabIItemFragment : BaseFragment() {
     override fun onBaseViewCreateAfter() {
 
         mAdapter = TabIItemAdapter(null)
-        main_item_recycler.layoutManager = LinearLayoutManager(context)
-        main_item_recycler.adapter = mAdapter
         netNewsDates {
             mData = it
             mAdapter.setNewData(mData!!.result.data)

@@ -24,11 +24,9 @@ import com.blankj.utilcode.util.ScreenUtils
 @Route(path = FragmentPath.TAB_I)
 class TabIFragment : BaseFragment() {
 
-    @BindView(R2.id.tab_main)
+
     lateinit var tabMain: TabLayout
-    @BindView(R2.id.view_pager_main)
     lateinit var viewPagerMain: ViewPager
-    @BindView(R2.id.iv_main_top)
     lateinit var ivMainTop: AppCompatImageView
 
     private val mTabs = ArrayList<String>()

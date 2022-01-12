@@ -21,9 +21,9 @@ import io.reactivex.functions.Consumer
  */
 class LaunchActivity : BaseActivity() {
 
-    @BindView(R.id.iv_start)
+
     lateinit var ivStart: AppCompatImageView
-    @BindView(R.id.tv_start)
+
     lateinit var tvStart: TextView
 
     override fun onBaseInitAfter(savedInstanceState: Bundle?) {

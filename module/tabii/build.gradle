@@ -43,7 +43,7 @@ android {
 dependencies {
     implementation project(':module:common')
 
-    kapt "com.alibaba:arouter-compiler:${version_config.arouter_annotation_version}"
+    kapt dependencies_third_party.arouter_compiler
     kapt "com.github.bumptech.glide:compiler:${version_config.glide_annotation_version}"
     kapt "com.jakewharton:butterknife-compiler:${version_config.butterknife_version}"
 }

@@ -40,10 +40,6 @@ abstract class BaseFragment : Fragment() {
         onBaseViewCreateAfter()
     }
 
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-    }
-
     @LayoutRes
     abstract fun initFragmentViewId(): Int
 
